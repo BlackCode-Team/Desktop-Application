@@ -25,6 +25,7 @@ public class main {
         Reservation res = new Reservation(3, date, 5, 1);
         ReservationService reservationService = new ReservationService();
         System.out.println(reservationService.ajouterReservation(res));
+        System.out.println("");
        // System.out.println(reservationService.modifierReservation(1, res));
        //System.out.println(reservationService.supprimerReservation(5,res));
         // System.out.println(reservationService.afficherReservations());
