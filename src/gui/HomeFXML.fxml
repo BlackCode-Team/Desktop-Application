@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.gluonhq.charm.glisten.control.AppBar?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.HomeController">
+   <children>
+      <AppBar layoutX="-4.0" prefHeight="54.0" prefWidth="608.0" style="-fx-background-color: #041231;" titleText="                 CarNgo" />
+      <ToggleButton layoutX="422.0" layoutY="231.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="95.0" style="-fx-background-color: #041231;" text="Réservation" />
+      <ToggleButton layoutX="256.0" layoutY="306.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="101.0" style="-fx-background-color: #041231;" text="Réclamation" />
+      <ToggleButton layoutX="93.0" layoutY="161.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="95.0" style="-fx-background-color: #041231;" text="Vehicule" />
+      <ToggleButton layoutX="422.0" layoutY="161.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="95.0" style="-fx-background-color: #041231;" text="Agent" />
+      <ToggleButton layoutX="93.0" layoutY="231.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="95.0" style="-fx-background-color: #041231;" text="Badge" />
+      <ToggleButton layoutX="253.0" layoutY="98.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="101.0" style="-fx-background-color: #041231;" text="Itinéraire" />
+   </children>
+</AnchorPane>
