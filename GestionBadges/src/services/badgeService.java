@@ -56,7 +56,7 @@ public class badgeService implements Ibadge{
             ste.setInt(2, B.getNbrepoint());
             ste.setInt(3, idbadge);
             ste.executeUpdate();
-            System.out.println("*************** MODIFIED ********************");
+            System.out.println("***************##### MODIFIED ********************");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
