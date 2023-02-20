@@ -14,7 +14,7 @@ public class itineraire {
     String pointDepart;
     String pointDestination;
     float kilometrage;
-    int DureéEstime;
+    int DureeEstime;
 
 
     public float getKilometrage() {
@@ -39,7 +39,15 @@ public class itineraire {
         this.pointDepart = pointDepart;
         this.pointDestination = pointDestination;
         this.kilometrage = kilometrage;
-        this.DureéEstime = DureéEstime;
+        this.DureeEstime = DureéEstime;
+    }
+
+    public itineraire(int idUser, String pointDepart, String pointDestination, float kilometrage, int DureéEstime) {
+        this.idUser = idUser;
+        this.pointDepart = pointDepart;
+        this.pointDestination = pointDestination;
+        this.kilometrage = kilometrage;
+        this.DureeEstime = DureéEstime;
     }
 
 
@@ -47,7 +55,7 @@ public class itineraire {
         this.idUser = idUser;
         this.pointDepart = pointDepart;
         this.pointDestination = pointDestination;
-        this.DureéEstime = DureéEstime;
+        this.DureeEstime = DureéEstime;
     }
 
     public itineraire() {
@@ -56,7 +64,7 @@ public class itineraire {
     public itineraire(String pointDepart, String pointDestination, int DureéEstime) {
         this.pointDepart = pointDepart;
         this.pointDestination = pointDestination;
-        this.DureéEstime = DureéEstime;
+        this.DureeEstime = DureéEstime;
     }
 
     public int getIdUser() {
@@ -84,17 +92,17 @@ public class itineraire {
         this.pointDestination = pointDestination;
     }
 
-    public int getDureéEstime() {
-        return DureéEstime;
+    public int getDureeEstime() {
+        return DureeEstime;
     }
 
     @Override
     public String toString() {
-        return "itineraire{ pointDepart=" + pointDepart + ", pointDestination=" + pointDestination + ", DureeEstime=" + DureéEstime +", kilometrage=" + kilometrage + '}';
+        return "itineraire{ pointDepart=" + pointDepart + ", pointDestination=" + pointDestination + ", DureeEstime=" + DureeEstime +", kilometrage=" + kilometrage + '}';
     }
 
-    public void setDureéEstime(int DureéEstime) {
-        this.DureéEstime = DureéEstime;
+    public void setDureeEstime(int DureéEstime) {
+        this.DureeEstime = DureéEstime;
     }
     
 }

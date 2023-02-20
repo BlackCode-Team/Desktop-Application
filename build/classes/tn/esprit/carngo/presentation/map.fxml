@@ -11,7 +11,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="809.0" prefWidth="1209.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="809.0" prefWidth="1209.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.carngo.presentation.MapController">
    <children>
       <ImageView fitHeight="786.0" fitWidth="1450.0" layoutX="-113.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true" />
       <MenuBar accessibleRole="BUTTON" layoutX="-4.0" prefHeight="56.0" prefWidth="1216.0">
@@ -33,24 +33,28 @@
           </Menu>
         </menus>
       </MenuBar>
-      <TableView id="tabitin" layoutX="516.0" layoutY="186.0" prefHeight="438.0" prefWidth="641.0">
+      <TableView id="tabitin" fx:id="tableit" layoutX="516.0" layoutY="186.0" prefHeight="438.0" prefWidth="641.0">
         <columns>
-          <TableColumn id="dep" prefWidth="191.0" text="Placement de départ" />
-          <TableColumn id="ariv" prefWidth="194.0" text="Placement d'arriver" />
-            <TableColumn id="dis" minWidth="0.0" prefWidth="126.0" text="Distance(km)" />
-            <TableColumn id="time" prefWidth="94.0" text="Temps estimé" />
-            <TableColumn id="id" prefWidth="35.0" text="Id" />
+          <TableColumn id="dep" fx:id="departcol" prefWidth="146.0" text="Placement de départ" />
+          <TableColumn id="ariv" fx:id="arivcol" prefWidth="145.0" text="Placement d'arriver" />
+            <TableColumn id="dis" fx:id="distancecol" minWidth="0.0" prefWidth="141.0" text="Distance(km)" />
+            <TableColumn id="time" fx:id="estimcol" prefWidth="101.0" text="Temps estimé" />
+            <TableColumn id="id" fx:id="iduser" prefWidth="47.0" text="Id" />
+            <TableColumn fx:id="iditincol" prefWidth="56.0" text="id itin" />
         </columns>
       </TableView>
-      <TextField id="depart" layoutX="225.0" layoutY="201.0" />
-      <TextField id="arriver" layoutX="225.0" layoutY="248.0" />
+      <TextField id="depart" fx:id="depart" layoutX="225.0" layoutY="201.0" />
+      <TextField id="arriver" fx:id="arriver" layoutX="225.0" layoutY="248.0" />
       <Label id="Placementdépart" layoutX="83.0" layoutY="205.0" prefHeight="17.0" prefWidth="124.0" text="Placement de départ" />
       <Label id="Placementarriver" layoutX="87.0" layoutY="252.0" prefHeight="17.0" prefWidth="117.0" text="Placement d'arriver" />
       <Button id="map" layoutX="221.0" layoutY="405.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="157.0" text="Selectioner depuis le map" />
-      <Button id="ajouter" layoutX="225.0" layoutY="456.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="87.0" text="AJOUTER" />
-      <Button id="supp" layoutX="525.0" layoutY="635.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="Supprimer" />
-      <Button id="mod" layoutX="694.0" layoutY="635.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="149.0" text="Modifier" />
-      <TextField id="temps" layoutX="225.0" layoutY="297.0" />
+      <Button id="ajouter" fx:id="ajoutit" layoutX="225.0" layoutY="456.0" mnemonicParsing="false" onAction="#ajout_itineraire" prefHeight="25.0" prefWidth="87.0" text="AJOUTER" />
+      <Button id="supp" fx:id="suppit" layoutX="525.0" layoutY="635.0" mnemonicParsing="false" onAction="#supp_itineraire" prefHeight="25.0" prefWidth="149.0" text="Supprimer" />
+      <Button id="mod" fx:id="modit" layoutX="694.0" layoutY="635.0" mnemonicParsing="false" onAction="#mod_itineraire" prefHeight="25.0" prefWidth="149.0" text="Modifier" />
+      <TextField id="temps" fx:id="tempsest" layoutX="225.0" layoutY="297.0" />
       <Label layoutX="83.0" layoutY="301.0" text="Temps estime location " />
+      <TextField id="depart" fx:id="iditin" layoutX="225.0" layoutY="153.0" />
+      <Label id="Placementdépart" layoutX="97.0" layoutY="157.0" prefHeight="17.0" prefWidth="124.0" text="Id user" />
+      <Label fx:id="idlabel" layoutX="225.0" layoutY="335.0" prefHeight="17.0" prefWidth="149.0" />
    </children>
 </Pane>

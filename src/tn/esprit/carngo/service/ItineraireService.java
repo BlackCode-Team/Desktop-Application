@@ -11,6 +11,8 @@ import java.sql.*;
 import tn.esprit.carngo.utils.MyConnection;
 import java.time.Clock;
 import java.util.ArrayList;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -18,6 +20,7 @@ import java.util.ArrayList;
  */
 public class ItineraireService implements InterfaceItineraire{
   
+    public static int a=1;
     Connection cnx;
 
     public ItineraireService() {
@@ -27,17 +30,17 @@ public class ItineraireService implements InterfaceItineraire{
     @Override
     public void ajouterItineraire(itineraire i) {
          try {
-            String sql = "insert into itineraire r (r.iduser,r.iditineraire,r.pointdepart,r.pointarrivee,r.dureeestimee,r.kilometrage)join utilisateur u on (r.iduser=u.iduser)"
-                    + "values (?,?,?,?,?)";
+            String sql = "insert into itineraire (iduser,iditineraire,pointdepart,pointarrivee,dureeestimee,kilometrage) "
+                    + "values (?,?,?,?,?,?)";
             PreparedStatement ste = cnx.prepareStatement(sql);
             ste.setInt(1, i.getIdUser());
             ste.setInt(2, i.getIdItineraire());
             ste.setString(3, i.getPointDepart());
             ste.setString(4, i.getPointDestination());
-            ste.setInt(5, i.getDureéEstime());
-            ste.setFloat(2, i.getKilometrage());
-
+            ste.setInt(5, i.getDureeEstime());
+            ste.setFloat(6, i.getKilometrage());
             ste.executeUpdate();
+           
             System.out.println("********************itineraire ajoutée*******************************");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -47,14 +50,14 @@ public class ItineraireService implements InterfaceItineraire{
 
     @Override
     public void modifierItineraire(int id,itineraire i) {
-    String sql = "update itineraire i join utilisateur r on (i.iduser=r.iduser) set pointdepart=?,pointarrivee=?,dureeestimee=?,kilometrage=?  where i.iduser=? ";
+    String sql = "update itineraire i join utilisateur r on (i.iduser=r.iduser) set pointdepart=?,pointarrivee=?,dureeestimee=?,kilometrage=?  where iditineraire=? ";
         try {
             PreparedStatement ste = cnx.prepareStatement(sql);
             ste.setString(1, i.getPointDepart());
             ste.setString(2, i.getPointDestination());
-            ste.setInt(3, i.getDureéEstime());
-            ste.setFloat(3, i.getKilometrage());
-            ste.setInt(4,id);
+            ste.setInt(3, i.getDureeEstime());
+            ste.setFloat(4, i.getKilometrage());
+            ste.setInt(5,id);
             ste.executeUpdate();
             System.out.println("********************** MODIFIED ****************************************");
         } catch (SQLException ex) {
@@ -79,13 +82,13 @@ public class ItineraireService implements InterfaceItineraire{
     public List<itineraire> afficherItineraire() {
 
  List<itineraire> itineraires = new ArrayList<>();
-        try {
-            String sql = "select pointdepart,pointarrivee,dureeestimee from itineraire";
-            Statement ste = cnx.createStatement();
-            ResultSet s = ste.executeQuery(sql);
+            try {
+            String sql = "select iduser,iditineraire,pointdepart,pointarrivee,dureeestimee from itineraire";
+            Statement st = MyConnection.getInstance().getCnx().createStatement();
+            ResultSet s = st.executeQuery(sql);
             while (s.next()) {
 
-                itineraire i = new itineraire(s.getString(1),s.getString(2),s.getInt(3));
+                itineraire i = new itineraire(s.getInt(1),s.getInt(2),s.getString(3),s.getString(4),s.getInt(5),s.getInt(1));
                 itineraires.add(i);
 
             }
@@ -115,5 +118,21 @@ public class ItineraireService implements InterfaceItineraire{
         }
         return itineraires;
     }
+ public List<itineraire> ListeItineraire() {
+ ObservableList<itineraire> itineraires = FXCollections.observableArrayList();
+        try {
+            String sql = "select pointdepart,pointarrivee,dureeestimee from itineraire";
+            Statement ste = cnx.createStatement();
+            ResultSet s = ste.executeQuery(sql);
+            while (s.next()) {
 
+                itineraire i = new itineraire(s.getString(1),s.getString(2),s.getInt(3));
+                itineraires.add(i);
+
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return itineraires;
+    }
 }
