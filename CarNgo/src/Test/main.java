@@ -36,6 +36,8 @@ public class main {
              //us1.ajouterUtilisateur(u4);
 //             us1.supprimerUtilisateur(u4);
 //             us1.modifierUtilisateur(u1);
+//              us1.ajouterUtilisateur(u3);
+//              us1.ajouterUtilisateur(u4);
              System.out.println(us1.afficherUtilisateur());
 
             

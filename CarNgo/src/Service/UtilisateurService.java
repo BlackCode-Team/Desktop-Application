@@ -48,13 +48,14 @@ public class UtilisateurService implements UtilisateurInterface {
         String sq = "UPDATE `utilisateur` SET `nom`=?,`prenom`=?,`pwd`=?,`email`=?,`cin`=?,`permis`=?,`nbpoint`=? WHERE 1";
         try {
             PreparedStatement ste = cnx.prepareStatement(sq);
-            ste.setString(1, u.getNom());
-            ste.setString(2, u.getPrenom());
-            ste.setString(3, u.getPassword());
-            ste.setString(4, u.getEmail());
-            ste.setString(5, u.getCin());
-            ste.setString(6, u.getPermis());
-            ste.setInt(7, u.getNbPoint());
+            
+            ste.setString(2, u.getNom());
+            ste.setString(3, u.getPrenom());
+            ste.setString(4, u.getPassword());
+            ste.setString(5, u.getEmail());
+            ste.setString(6, u.getCin());
+            ste.setString(7, u.getPermis());
+            ste.setInt(8, u.getNbPoint());
 
             int rowsUpdated = ste.executeUpdate();
             if (rowsUpdated > 0) {
@@ -99,37 +100,37 @@ public class UtilisateurService implements UtilisateurInterface {
             while (res.next()) {
                 
                 Utilisateur u = new Utilisateur();
-                u.setRole(TypeUser.valueOf(res.getString("Role")));
+//                u.setRole(res.getString("Role"));         
+                    u.setRole(TypeUser.fromString(res.getString("role")));
                 
                 if (u.getRole()==TypeUser.client) {
                     u.setNom(res.getString("nom"));
                     u.setPrenom(res.getString("prenom"));
-                    u.setCin(res.getString("Cin"));
+                    u.setCin(res.getString("cin"));
                     u.setEmail(res.getString("email"));
                     u.setPassword(res.getString("pwd"));
                     u.setPermis(res.getString("permis"));
-                    u.setNbPoint(res.getInt("nbpoints"));
+                    u.setNbPoint(res.getInt("nbpoint"));
                     u.setIdUser(res.getInt("iduser"));
                 }
                 else if (u.getRole()==TypeUser.admin) {
-                    u.setIdUser(res.getInt("ID User"));
-                    u.setNom(res.getString("Nom"));
-                    u.setCin(res.getString("Cin"));
-                    u.setPrenom(res.getString("Prenom"));
-                    u.setEmail(res.getString("Email"));
+                    u.setIdUser(res.getInt("iduser"));
+                    u.setNom(res.getString("nom"));
+                    u.setCin(res.getString("cin"));
+                    u.setPrenom(res.getString("prenom"));
+                    u.setEmail(res.getString("email"));
                 }
                 else {
-                    u.setIdUser(res.getInt("ID User"));
-                    u.setCin(res.getString("Cin"));
-                    u.setNom(res.getString("Nom"));
-                    u.setPrenom(res.getString("Prenom"));
-                    u.setEmail(res.getString("Email"));
+                    u.setIdUser(res.getInt("iduser"));
+                    u.setCin(res.getString("cin"));
+                    u.setNom(res.getString("nom"));
+                    u.setPrenom(res.getString("prenom"));
+                    u.setEmail(res.getString("email"));
                     
                 }
                 
                 ListeUsers.add(u);
-                
-
+//                System.out.println("\n");
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());

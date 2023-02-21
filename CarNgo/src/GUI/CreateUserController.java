@@ -7,21 +7,32 @@ package GUI;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.layout.GridPane;
 
 /**
  * FXML Controller class
  *
  * @author Jokser
  */
-public class FXMLController implements Initializable {
+public class CreateUserController implements Initializable {
 
     /**
      * Initializes the controller class.
      */
+//    @FXML
+//    GridPane button_grid;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        
+
+
+
     }    
+    
+    public void test () {
+        
+    }
     
 }

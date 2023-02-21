@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.gluonhq.charm.glisten.control.TextField?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.CreateUserController">
+   <children>
+      <Button fx:id="submitButton" layoutX="274.0" layoutY="324.0" mnemonicParsing="false" onAction="#test" text="Button" />
+      <Label layoutX="208.0" layoutY="14.0" text="CREATE USER" textAlignment="CENTER">
+         <font>
+            <Font size="33.0" />
+         </font>
+      </Label>
+      <TextField layoutX="165.0" layoutY="95.0" prefHeight="25.0" prefWidth="284.0" />
+      <Label layoutX="81.0" layoutY="99.0" text="Nom" />
+      <Label layoutX="81.0" layoutY="143.0" text="Prenom" />
+      <TextField layoutX="165.0" layoutY="139.0" prefHeight="25.0" prefWidth="284.0" />
+      <Label layoutX="88.0" layoutY="183.0" text="Role" />
+      <RadioButton layoutX="165.0" layoutY="183.0" mnemonicParsing="false" text="Admin" />
+      <RadioButton layoutX="265.0" layoutY="183.0" mnemonicParsing="false" text="Agent" />
+      <RadioButton layoutX="363.0" layoutY="183.0" mnemonicParsing="false" text="Client" />
+   </children>
+</AnchorPane>
