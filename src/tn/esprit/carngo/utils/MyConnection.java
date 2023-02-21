@@ -10,6 +10,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.lang.ClassNotFoundException;
 
 /**
  *
@@ -30,7 +31,9 @@ public class MyConnection {
             System.out.println("****************   SUCCESSFULLY    ********* ");
 
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+            System.out.println( ex.getMessage());
+             Logger.getLogger(MyConnection.class.getName())
+                    .log(Level.SEVERE, null, ex);
         }
     }
 
