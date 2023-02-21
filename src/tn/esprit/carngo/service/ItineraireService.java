@@ -83,12 +83,12 @@ public class ItineraireService implements InterfaceItineraire{
 
  List<itineraire> itineraires = new ArrayList<>();
             try {
-            String sql = "select iduser,iditineraire,pointdepart,pointarrivee,dureeestimee from itineraire";
+            String sql = "select iduser,iditineraire,pointdepart,pointarrivee,kilometrage,dureeestimee from itineraire";
             Statement st = MyConnection.getInstance().getCnx().createStatement();
             ResultSet s = st.executeQuery(sql);
             while (s.next()) {
 
-                itineraire i = new itineraire(s.getInt(1),s.getInt(2),s.getString(3),s.getString(4),s.getInt(5),s.getInt(1));
+                itineraire i = new itineraire(s.getInt(1),s.getInt(2),s.getString(3),s.getString(4),s.getInt(5),s.getInt(6));
                 itineraires.add(i);
 
             }
@@ -118,21 +118,26 @@ public class ItineraireService implements InterfaceItineraire{
         }
         return itineraires;
     }
- public List<itineraire> ListeItineraire() {
- ObservableList<itineraire> itineraires = FXCollections.observableArrayList();
-        try {
-            String sql = "select pointdepart,pointarrivee,dureeestimee from itineraire";
-            Statement ste = cnx.createStatement();
-            ResultSet s = ste.executeQuery(sql);
-            while (s.next()) {
 
-                itineraire i = new itineraire(s.getString(1),s.getString(2),s.getInt(3));
-                itineraires.add(i);
-
-            }
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+public String NameUser(int id) {
+    String a = "";
+    try {
+        String sql = "SELECT utilisateur.nom\n" +
+            "FROM utilisateur\n" +
+            "JOIN itineraire\n" +
+            "ON utilisateur.iduser = itineraire.iduser\n" +
+            "WHERE utilisateur.iduser=?";
+        PreparedStatement ste = cnx.prepareStatement(sql);
+        ste.setInt(1, id);
+        ResultSet s = ste.executeQuery();
+        while (s.next()) {
+            a = s.getString("nom");
         }
-        return itineraires;
+    } catch (SQLException ex) {
+        System.out.println(ex.getMessage());
     }
+    return a;
+}
+
+ 
 }

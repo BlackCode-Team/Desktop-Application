@@ -17,7 +17,7 @@ public class main {
         ItineraireService is = new ItineraireService();
         itineraire i = new itineraire(1,2,"benzart","tunis",30f,50);
          itineraire i2 = new itineraire("sousse","tunis",60);
-      is.ajouterItineraire(i);
+      //is.ajouterItineraire(i);
    //  is.supprimerItineraire(i);
       //is.modifierItineraire(1, i2 );
         System.out.println(is.afficherItineraire());

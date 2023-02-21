@@ -2,38 +2,20 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="809.0" prefWidth="1209.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.carngo.presentation.MapController">
    <children>
-      <ImageView fitHeight="786.0" fitWidth="1450.0" layoutX="-113.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true" />
-      <MenuBar accessibleRole="BUTTON" layoutX="-4.0" prefHeight="56.0" prefWidth="1216.0">
-        <menus>
-          <Menu mnemonicParsing="false" text="Acceuil">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Close" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Agents">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Delete" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Itineraires">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
-            </items>
-          </Menu>
-        </menus>
-      </MenuBar>
-      <TableView id="tabitin" fx:id="tableit" layoutX="516.0" layoutY="186.0" prefHeight="438.0" prefWidth="641.0">
+      <ImageView fitHeight="54.0" fitWidth="41.0" layoutX="1154.0" layoutY="741.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../../../Downloads/LOGO%20GROUPE%20(1).png" />
+         </image></ImageView>
+      <TableView id="tabitin" fx:id="tableit" layoutX="516.0" layoutY="186.0" onMouseClicked="#getit" prefHeight="438.0" prefWidth="641.0">
         <columns>
           <TableColumn id="dep" fx:id="departcol" prefWidth="146.0" text="Placement de départ" />
           <TableColumn id="ariv" fx:id="arivcol" prefWidth="145.0" text="Placement d'arriver" />
@@ -47,14 +29,19 @@
       <TextField id="arriver" fx:id="arriver" layoutX="225.0" layoutY="248.0" />
       <Label id="Placementdépart" layoutX="83.0" layoutY="205.0" prefHeight="17.0" prefWidth="124.0" text="Placement de départ" />
       <Label id="Placementarriver" layoutX="87.0" layoutY="252.0" prefHeight="17.0" prefWidth="117.0" text="Placement d'arriver" />
-      <Button id="map" layoutX="221.0" layoutY="405.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="157.0" text="Selectioner depuis le map" />
-      <Button id="ajouter" fx:id="ajoutit" layoutX="225.0" layoutY="456.0" mnemonicParsing="false" onAction="#ajout_itineraire" prefHeight="25.0" prefWidth="87.0" text="AJOUTER" />
-      <Button id="supp" fx:id="suppit" layoutX="525.0" layoutY="635.0" mnemonicParsing="false" onAction="#supp_itineraire" prefHeight="25.0" prefWidth="149.0" text="Supprimer" />
-      <Button id="mod" fx:id="modit" layoutX="694.0" layoutY="635.0" mnemonicParsing="false" onAction="#mod_itineraire" prefHeight="25.0" prefWidth="149.0" text="Modifier" />
+      <Button id="map" layoutX="221.0" layoutY="405.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="183.0" style="-fx-background-color: #041231;" text="Selectioner depuis le map" />
+      <Button id="ajouter" fx:id="ajoutit" layoutX="225.0" layoutY="456.0" mnemonicParsing="false" onAction="#ajout_itineraire" prefHeight="38.0" prefWidth="117.0" style="-fx-background-color: #041231;" text="AJOUTER" />
+      <Button id="supp" fx:id="suppit" layoutX="525.0" layoutY="635.0" mnemonicParsing="false" onAction="#supp_itineraire" prefHeight="38.0" prefWidth="152.0" style="-fx-background-color: #041231;" text="Supprimer" />
+      <Button id="mod" fx:id="modit" layoutX="694.0" layoutY="635.0" mnemonicParsing="false" onAction="#mod_itineraire" prefHeight="38.0" prefWidth="152.0" style="-fx-background-color: #041231;" text="Modifier" />
       <TextField id="temps" fx:id="tempsest" layoutX="225.0" layoutY="297.0" />
       <Label layoutX="83.0" layoutY="301.0" text="Temps estime location " />
       <TextField id="depart" fx:id="iditin" layoutX="225.0" layoutY="153.0" />
       <Label id="Placementdépart" layoutX="97.0" layoutY="157.0" prefHeight="17.0" prefWidth="124.0" text="Id user" />
       <Label fx:id="idlabel" layoutX="225.0" layoutY="335.0" prefHeight="17.0" prefWidth="149.0" />
+      <ImageView fitHeight="236.0" fitWidth="277.0" layoutX="152.0" layoutY="555.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../../../Downloads/LOGO%20APP2%20transp.png" />
+         </image>
+      </ImageView>
    </children>
 </Pane>

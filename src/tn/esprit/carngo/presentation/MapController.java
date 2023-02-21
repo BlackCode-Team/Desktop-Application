@@ -6,13 +6,15 @@
 package tn.esprit.carngo.presentation;
 
 
-import java.awt.event.MouseEvent;
+
 import tn.esprit.carngo.entities.itineraire;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javafx.application.Platform;
@@ -22,6 +24,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Worker.State;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -35,6 +38,7 @@ import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import tn.esprit.carngo.service.ItineraireService;
 import tn.esprit.carngo.utils.MyConnection;
+import javafx.scene.input.MouseEvent;
 
 /**
  * FXML Controller class
@@ -95,14 +99,6 @@ public class MapController implements Initializable {
      MyConnection cnx = null;
      Statement st = null;
      ItineraireService  rcd = new ItineraireService ();
-     
-     
-     //********on utilise cette fonction pour lors des ajouts et modification ou spprission les table fait un mise a jour 
-     public void updateTable_r(){
-     itineraire= (ObservableList<itineraire>) rcd.afficherItineraire();
-     tableit.getItems().setAll(itineraire);
-    }
-     //*********************************************************************************************************************
      
      
      //**********************************controle de saisi
@@ -193,7 +189,7 @@ public class MapController implements Initializable {
       i.setDureeEstime(var4);
       i.setIdUser(var6);
       it.ajouterItineraire(i);
-       updateTable_r();
+       populateItineraires();
       arriver.clear();
       depart.clear();
       tempsest.clear();
@@ -219,7 +215,7 @@ public class MapController implements Initializable {
 
       itineraire i =new itineraire(var2,var1,var4);
       it.modifierItineraire(var6, i);
-       updateTable_r();
+       populateItineraires();
       arriver.clear();
       depart.clear();
       tempsest.clear();
@@ -235,50 +231,63 @@ public class MapController implements Initializable {
            itineraire i= new itineraire();   
               i= tableit.getSelectionModel().getSelectedItem();
               it.supprimerItineraire(i);
-              updateTable_r();
+              populateItineraires();
     }
 
-    //fonction pour recupere les donnes selectionne depuis le tableau
-        @FXML
-//    void getit(MouseEvent event) {
-//        index=tableit.getSelectionModel().getSelectedIndex();
-//         if(index<=-1){
-//         return ;
-//     }
-//     iditin.setText(iditincol.getCellData(index).toString());
-//     depart.setText(departcol.getCellData(index));
-//     arriver.setText(arivcol.getCellData(index));
-//     tempsest.setText(estimcol.getCellData(index).toString());
-//     idlabel.setText(iduser.getCellData(index).toString()+": id user ki a passer l'itineraire");
-//    }
     
     //fonction pour afficher les donnees dans un tableau 
-    public void affiche(){
-         try {
-            String sql = "select iduser,iditineraire,pointdepart,pointarrivee,dureeestimee from itineraire";
-            Statement st = MyConnection.getInstance().getCnx().createStatement();
-            ResultSet s = st.executeQuery(sql);
-            while (s.next()) {
+    public void populateItineraires() {
+    try {
+        Statement stmt = MyConnection.getInstance().getCnx().createStatement();
 
-                itineraire i = new itineraire(s.getInt(1),s.getInt(2),s.getString(3),s.getString(4),s.getInt(5),s.getInt(1));
-                data.add(i);
+        ResultSet rs = stmt.executeQuery("SELECT iduser,iditineraire,pointdepart,pointarrivee,kilometrage,dureeestimee FROM itineraire");
+        
+        ObservableList<itineraire> itinerairesList = FXCollections.observableArrayList();
 
-            }
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
+        while (rs.next()) {
+            int idUser = rs.getInt(1);
+            int idItineraire = rs.getInt(2);
+            String pointDepart = rs.getString(3);
+            String pointDestination = rs.getString(4);
+            int kilometrage = rs.getInt(5);
+            int DureeEstime = rs.getInt(6);
+
+            itineraire i = new itineraire(idUser, idItineraire, pointDepart, pointDestination,kilometrage, DureeEstime);
+            itinerairesList.add(i);
         }
-    
-                departcol.setCellValueFactory(new PropertyValueFactory<>("point_depart")); 
-                 arivcol.setCellValueFactory(new PropertyValueFactory<>("point_destination"));
-                 distancecol.setCellValueFactory(new PropertyValueFactory<>("distance"));
-                 estimcol.setCellValueFactory(new PropertyValueFactory<>("temps_estime"));
-                 iditincol.setCellValueFactory(new PropertyValueFactory<>("id_itineraire"));
-                 iduser.setCellValueFactory(new PropertyValueFactory<>("id_user_responsable"));
-                 
-                 tableit.setItems(data);
+        
+        iduser.setCellValueFactory(new PropertyValueFactory<>("idUser"));
+        iditincol.setCellValueFactory(new PropertyValueFactory<>("idItineraire"));
+        departcol.setCellValueFactory(new PropertyValueFactory<>("pointDepart"));
+        arivcol.setCellValueFactory(new PropertyValueFactory<>("pointDestination"));
+        distancecol.setCellValueFactory(new PropertyValueFactory<>("kilometrage"));
+        estimcol.setCellValueFactory(new PropertyValueFactory<>("DureeEstime"));
+
+        tableit.setItems(itinerairesList);
+     
+    } catch (SQLException e) {
+        e.printStackTrace();
     }
+   
+}
     
+    //fonction 3maltha juste ba3ed bech traja3li nom mta3 luser brl jointur ba3ed bel karhba twali modele 
     
+
+        //fonction pour recupere les donnes selectionne depuis le tableau
+        @FXML
+ private void getit(MouseEvent event) {
+    index = tableit.getSelectionModel().getSelectedIndex();
+    if (index <= -1) {
+        return;
+    }
+    ItineraireService it=new ItineraireService();
+    iditin.setText(iditincol.getCellData(index).toString());
+    depart.setText(departcol.getCellData(index));
+    arriver.setText(arivcol.getCellData(index));
+    tempsest.setText(estimcol.getCellData(index).toString());
+    idlabel.setText(it.NameUser(iduser.getCellData(index)));
+}
     
     /**
      * Initializes the controller class.
@@ -286,8 +295,9 @@ public class MapController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
    
-       affiche();
-      
+       populateItineraires();
+       tableit.setOnMouseClicked(this::getit);
+     
     }
     
        
