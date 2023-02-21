@@ -34,6 +34,12 @@
                   <TextField layoutX="241.0" layoutY="3.0" prefHeight="31.0" prefWidth="144.0" style="-fx-background-color: #F5F5F5;" text="Chakroun" />
                   <TextField layoutX="341.0" layoutY="3.0" prefHeight="31.0" prefWidth="122.0" style="-fx-background-color: #F5F5F5;" text="SayfCh@.com" />
                   <Icon accessibleRole="IMAGE_VIEW" content="HELP_OUTLINE" layoutX="472.0" layoutY="6.0" />
+                  <Icon accessibleRole="IMAGE_VIEW" content="HELP_OUTLINE" layoutX="509.0" layoutY="6.0" />
+                  <TextField layoutY="44.0" prefHeight="31.0" prefWidth="144.0" style="-fx-background-color: #F5F5F5;" text="11223344" />
+                  <TextField layoutX="143.0" layoutY="44.0" prefHeight="31.0" prefWidth="144.0" style="-fx-background-color: #F5F5F5;" text="Sayf" />
+                  <TextField layoutX="241.0" layoutY="44.0" prefHeight="31.0" prefWidth="144.0" style="-fx-background-color: #F5F5F5;" text="Chakroun" />
+                  <TextField layoutX="341.0" layoutY="44.0" prefHeight="31.0" prefWidth="122.0" style="-fx-background-color: #F5F5F5;" text="SayfCh@.com" />
+                  <Button layoutX="439.0" layoutY="210.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="110.0" style="-fx-background-color: #081531;" text="Enregistrer" />
                </children>
             </AnchorPane>
         </items>

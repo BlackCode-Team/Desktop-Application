@@ -5,6 +5,8 @@
  */
 package Entity;
 
+import java.util.Objects;
+
 /**
  *
  * @author Jokser
@@ -17,7 +19,8 @@ public class Utilisateur {
     String email;
     String cin;
     String permis;
-    int idAffectationBadge;
+    int nbPoint;
+//    int idAffectationBadge;
     TypeUser Role;
 //    enum TypeUser {Admin,Agent,Client};
     
@@ -29,18 +32,30 @@ public class Utilisateur {
     public Utilisateur() {
     }
 
-    public Utilisateur(int idUser, String nom, String prenom, String password, String email, String cin, String permis, int idAffectationBadge, TypeUser Role) {
-        this.idUser = idUser;
+    public Utilisateur( String nom, String prenom, String password, String email, String cin, String permis, int nbPoint, TypeUser Role) {
+        
         this.nom = nom;
         this.prenom = prenom;
         this.password = password;
         this.email = email;
         this.cin = cin;
         this.permis = permis;
-        this.idAffectationBadge = idAffectationBadge;
+        this.nbPoint = nbPoint;
+//        this.idAffectationBadge = idAffectationBadge;
         this.Role = Role;
     }
-
+     public Utilisateur( String nom, String prenom, String password, String email, String cin, String permis, int nbPoint) {
+        
+        this.nom = nom;
+        this.prenom = prenom;
+        this.password = password;
+        this.email = email;
+        this.cin = cin;
+        this.permis = permis;
+        this.nbPoint = nbPoint;
+//       
+    }
+    
     public int getIdUser() {
         return idUser;
     }
@@ -97,13 +112,21 @@ public class Utilisateur {
         this.permis = permis;
     }
 
-    public int getIdAffectationBadge() {
-        return idAffectationBadge;
+    public int getNbPoint() {
+        return nbPoint;
     }
 
-    public void setIdAffectationBadge(int idAffectationBadge) {
-        this.idAffectationBadge = idAffectationBadge;
+    public void setNbPoint(int nbPoint) {
+        this.nbPoint = nbPoint;
     }
+
+//    public int getIdAffectationBadge() {
+//        return idAffectationBadge;
+//    }
+//
+//    public void setIdAffectationBadge(int idAffectationBadge) {
+//        this.idAffectationBadge = idAffectationBadge;
+//    }
 
     public TypeUser getRole() {
         return Role;
@@ -115,13 +138,14 @@ public class Utilisateur {
 
     @Override
     public String toString() {
-        return ", nom=" + nom + ", prenom=" + prenom + ", password=" + password + ", email=" + email + ", cin=" + cin + ", permis=" + permis + ", idAffectationBadge=" + idAffectationBadge + ", Role=" + Role + '}';
+        return "Utilisateur{" + "idUser=" + idUser + ", nom=" + nom + ", prenom=" + prenom + ", password=" + password + ", email=" + email + ", cin=" + cin + ", permis=" + permis + ", nbPoint=" + nbPoint + ", Role=" + Role + '}';
     }
 
 //    @Override
 //    public int hashCode() {
-//        int hash = 7;
-//        hash = 47 * hash + this.idUser;
+//        int hash = 5;
+//        hash = 23 * hash + this.idUser;
+//        hash = 23 * hash + Objects.hashCode(this.cin);
 //        return hash;
 //    }
 
@@ -137,16 +161,12 @@ public class Utilisateur {
             return false;
         }
         final Utilisateur other = (Utilisateur) obj;
-        if (this.idUser != other.idUser) {
+        if (!Objects.equals(this.cin, other.cin)) {
             return false;
         }
         return true;
     }
 
-    
-
-    
-    
     
     
     

@@ -14,14 +14,13 @@ import java.util.List;
  */
 public interface UtilisateurInterface {
 
-    public void ajouterUtilisateur(Utilisateur u);
+    public int ajouterUtilisateur(Utilisateur u);
 
-    public void modifierUtilisateur(int id, Utilisateur u);
+    public void modifierUtilisateur(Utilisateur u);
 
-    public void supprimerUtilisateur(Utilisateur u);
+    public boolean supprimerUtilisateur(Utilisateur u);
 
     public List<Utilisateur> afficherUtilisateur();
 
-    public List<Utilisateur> Selectionparid(int id);
-
+    
 }

@@ -5,7 +5,9 @@
  */
 package Test;
 
+import Entity.TypeUser;
 import Entity.Utilisateur;
+import Service.UtilisateurService;
 //import Entity.itineraire;
 //import Service.ItineraireService;
 
@@ -23,7 +25,20 @@ public class main {
 //      is.modifierItineraire(1, i2 );
 //        System.out.println(is.afficherItineraire());
 //        
-//           Utilisateur u1= new Utilisateur();
+           Utilisateur u1= new Utilisateur("Smati", "Nada", "*****", "nada@gmail.com", "url1", "url2", 5, TypeUser.admin);
+           Utilisateur u3= new Utilisateur("Kefi", "Israa", "*****", "israa@gmail.com", "url1", "url2", 6, TypeUser.client);
+           Utilisateur u4= new Utilisateur("Azzouz", "Nesryne", "*****", "nesryne@gmail.com", "url1", "url2", 6, TypeUser.client);
+           
+           UtilisateurService us1 = new UtilisateurService();
+           
+//           us1.ajouterUtilisateur(u1);
+//           us1.ajouterUtilisateur(u2);
+             //us1.ajouterUtilisateur(u4);
+//             us1.supprimerUtilisateur(u4);
+//             us1.modifierUtilisateur(u1);
+             System.out.println(us1.afficherUtilisateur());
+
+            
            
            
            
