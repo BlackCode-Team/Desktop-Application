@@ -31,7 +31,7 @@ public class UtilisateurService implements UtilisateurInterface {
         int id = -1;
         try {
             String req1 = "INSERT INTO `utilisateur`(`role`, `nom`, `prenom`, `pwd`, `email`, `cin`, `permis`, `nbpoint`) "
-                    + "VALUES ('" + u.getRole() + "','" + u.getNom() + "','" + u.getPrenom() + "','" + u.getPassword() + "','" + u.getEmail() + "','" + u.getCin() + "','" + u.getPermis() + "','" + u.getNbPoint() + "')";
+                    + "VALUES ('" + u.getRole() + "','" + u.getNom() + "','" + u.getPrenom() + "','" + u.getPassword() + "','" + u.getEmail() + "','" + u.getCin() + "','" + u.getPermis() + "','" + u.getNbPoint() + "') WHERE "+u.getEmail()+"LIKE '%_@__%.__%";
 
             Statement ste = cnx.createStatement();
             id = ste.executeUpdate(req1);
