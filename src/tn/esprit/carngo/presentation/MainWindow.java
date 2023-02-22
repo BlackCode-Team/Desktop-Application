@@ -29,7 +29,7 @@ public class MainWindow extends Application {
     public void start(Stage primaryStage) {
         try {
             Parent root = FXMLLoader.
-                    load(getClass().getResource("map.fxml"));
+                    load(getClass().getResource("HomeFXML.fxml"));
             Scene scene = new Scene(root);
             
             primaryStage.setTitle("Hello World!");

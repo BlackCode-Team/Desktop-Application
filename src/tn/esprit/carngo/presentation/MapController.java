@@ -7,6 +7,7 @@ package tn.esprit.carngo.presentation;
 
 
 
+import java.io.IOException;
 import tn.esprit.carngo.entities.itineraire;
 import java.net.URL;
 import java.sql.ResultSet;
@@ -26,7 +27,10 @@ import javafx.concurrent.Worker.State;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -39,6 +43,8 @@ import javafx.scene.web.WebView;
 import tn.esprit.carngo.service.ItineraireService;
 import tn.esprit.carngo.utils.MyConnection;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -46,7 +52,8 @@ import javafx.scene.input.MouseEvent;
  * @author mhcab
  */
 public class MapController implements Initializable {
-
+  @FXML
+    private AnchorPane itinpage;
    @FXML
     private TableView<itineraire> tableit;
     public ObservableList<itineraire> data=FXCollections.observableArrayList();
@@ -111,7 +118,7 @@ public class MapController implements Initializable {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Type validé !");
                 alert.setHeaderText(null);
-                alert.setContentText("Veuillez entrer un type validé !");
+                alert.setContentText("Veuillez entrer un type DESTINATION validé !");
                 alert.showAndWait();
            
             return false;            
@@ -126,7 +133,7 @@ public class MapController implements Initializable {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Type validé !");
                 alert.setHeaderText(null);
-                alert.setContentText("Veuillez entrer un type validé !");
+                alert.setContentText("Veuillez entrer un type DEPART validé !");
                 alert.showAndWait();
            
             return false;            
@@ -141,7 +148,7 @@ public class MapController implements Initializable {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Type validé !");
                 alert.setHeaderText(null);
-                alert.setContentText("Veuillez entrer un type validé !");
+                alert.setContentText("Veuillez entrer un type TEMPS ESTIME validé !");
                 alert.showAndWait();
            
             return false;            
@@ -156,7 +163,7 @@ public class MapController implements Initializable {
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Type validé !");
                 alert.setHeaderText(null);
-                alert.setContentText("Veuillez entrer un type validé !");
+                alert.setContentText("Veuillez entrer un type ID USER validé !");
                 alert.showAndWait();
            
             return false;            
@@ -283,12 +290,27 @@ public class MapController implements Initializable {
     }
     ItineraireService it=new ItineraireService();
     iditin.setText(iditincol.getCellData(index).toString());
+    iditin.setDisable(true);
     depart.setText(departcol.getCellData(index));
     arriver.setText(arivcol.getCellData(index));
     tempsest.setText(estimcol.getCellData(index).toString());
-    idlabel.setText(it.NameUser(iduser.getCellData(index)));
+    idlabel.setText("le nom du User : "+(it.NameUser(iduser.getCellData(index))));
 }
-    
+      @FXML
+    void gmapwin(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("gmap.fxml"));
+
+        // Load the FXML file
+        Parent anotherRoot = loader.load();
+
+        // cree une nouvelle scene ou nsetiw stage fiha ma3neha lpage fxml
+        Scene anotherScene = new Scene(anotherRoot);
+        Stage anotherStage = new Stage();
+        anotherStage.setScene(anotherScene);
+
+        // pour afficher le stage
+        anotherStage.show();
+    }
     /**
      * Initializes the controller class.
      */
