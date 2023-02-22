@@ -55,6 +55,13 @@ public class Utilisateur {
         this.nbPoint = nbPoint;
 //       
     }
+
+    public Utilisateur(String nom, String prenom, String email, String cin) {
+        this.nom = nom;
+        this.prenom = prenom;
+        this.email = email;
+        this.cin = cin;
+    }
     
     public int getIdUser() {
         return idUser;

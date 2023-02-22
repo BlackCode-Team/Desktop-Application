@@ -1,27 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.gluonhq.charm.glisten.control.TextField?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.CreateUserController">
    <children>
-      <Button fx:id="submitButton" layoutX="274.0" layoutY="324.0" mnemonicParsing="false" onAction="#test" text="Button" />
-      <Label layoutX="208.0" layoutY="14.0" text="CREATE USER" textAlignment="CENTER">
+      <Label layoutX="286.0" layoutY="35.0" />
+      <Label layoutX="20.0" layoutY="14.0" prefHeight="47.0" prefWidth="262.0" text="Gestion des agents" textFill="#041231">
          <font>
-            <Font size="33.0" />
+            <Font name="Arial Black" size="22.0" />
          </font>
       </Label>
-      <TextField layoutX="165.0" layoutY="95.0" prefHeight="25.0" prefWidth="284.0" />
-      <Label layoutX="81.0" layoutY="99.0" text="Nom" />
-      <Label layoutX="81.0" layoutY="143.0" text="Prenom" />
-      <TextField layoutX="165.0" layoutY="139.0" prefHeight="25.0" prefWidth="284.0" />
-      <Label layoutX="88.0" layoutY="183.0" text="Role" />
-      <RadioButton layoutX="165.0" layoutY="183.0" mnemonicParsing="false" text="Admin" />
-      <RadioButton layoutX="265.0" layoutY="183.0" mnemonicParsing="false" text="Agent" />
-      <RadioButton layoutX="363.0" layoutY="183.0" mnemonicParsing="false" text="Client" />
+      <Pane layoutX="20.0" layoutY="68.0" prefHeight="241.0" prefWidth="281.0" style="-fx-background-color: #041231;">
+         <children>
+            <Label layoutX="22.0" layoutY="34.0" text="Nom" textFill="WHITE" />
+            <TextField fx:id="TxtNom" layoutX="81.0" layoutY="30.0" />
+            <Label layoutX="21.0" layoutY="86.0" text="Prénom" textFill="WHITE" />
+            <TextField fx:id="TxtPrenom" layoutX="81.0" layoutY="82.0" />
+            <Label layoutX="21.0" layoutY="140.0" text="Email" textFill="WHITE" />
+            <TextField fx:id="TxtEmail" layoutX="81.0" layoutY="136.0" />
+            <Label layoutX="22.0" layoutY="193.0" text="CIN" textFill="WHITE" />
+            <TextField fx:id="TxtCin" layoutX="81.0" layoutY="189.0" />
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </Pane>
+      <TableView fx:id="CrudTable" layoutX="320.0" layoutY="68.0" prefHeight="316.0" prefWidth="272.0">
+        <columns>
+          <TableColumn fx:id="NomColumn" prefWidth="69.0" text="Nom" />
+          <TableColumn fx:id="PrenomColumn" prefWidth="78.0" text="Prénom" />
+            <TableColumn fx:id="EmaiColumn" prefWidth="68.0" text="Email" />
+            <TableColumn fx:id="CinColumn" prefWidth="85.0" text="CIN" />
+        </columns>
+      </TableView>
+      <Button fx:id="ButtonAdd" layoutX="20.0" layoutY="333.0" mnemonicParsing="false" onAction="#Add" style="-fx-background-color: #48b760;" text="Ajouter" textFill="WHITE" />
+      <Button fx:id="ButtonUpdate" layoutX="130.0" layoutY="333.0" mnemonicParsing="false" onAction="#Update" style="-fx-background-color: #ef7d10;" text="Modifier" textFill="WHITE" />
+      <Button fx:id="ButtonDelete" layoutX="229.0" layoutY="333.0" mnemonicParsing="false" onAction="#Delete" style="-fx-background-color: #ff1a00;" text="Supprimer" textFill="WHITE" />
    </children>
 </AnchorPane>
