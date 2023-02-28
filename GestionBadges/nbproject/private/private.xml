@@ -3,11 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/MSI/Documents/NetBeansProjects/GestionBadges/src/entities/Badge.java</file>
-            <file>file:/C:/Users/MSI/Documents/NetBeansProjects/GestionBadges/src/services/Ibadge.java</file>
-            <file>file:/C:/Users/MSI/Documents/NetBeansProjects/GestionBadges/src/services/badgeService.java</file>
-            <file>file:/C:/Users/MSI/Documents/NetBeansProjects/GestionBadges/src/gestionbadges/GestionBadges.java</file>
-            <file>file:/C:/Users/MSI/Documents/NetBeansProjects/GestionBadges/src/utils/MyConnection.java</file>
+            <file>file:/C:/Users/MSI/Documents/GitHub/Desktop-Application/GestionBadges/src/images/logo.png</file>
+            <file>file:/C:/Users/MSI/Documents/GitHub/Desktop-Application/GestionBadges/src/services/badgeService.java</file>
+            <file>file:/C:/Users/MSI/Documents/GitHub/Desktop-Application/GestionBadges/src/interfaceFX/AffichageBadgeController.java</file>
+            <file>file:/C:/Users/MSI/Documents/GitHub/Desktop-Application/GestionBadges/src/interfaceFX/affichageBadge.fxml</file>
+            <file>file:/C:/Users/MSI/Documents/GitHub/Desktop-Application/GestionBadges/src/interfaceFX/AffichageOffreController.java</file>
+            <file>file:/C:/Users/MSI/Documents/GitHub/Desktop-Application/GestionBadges/src/services/Ioffre.java</file>
+            <file>file:/C:/Users/MSI/Documents/GitHub/Desktop-Application/GestionBadges/src/interfaceFX/AffichageOffre.fxml</file>
+            <file>file:/C:/Users/MSI/Documents/GitHub/Desktop-Application/GestionBadges/src/entities/Badge.java</file>
+            <file>file:/C:/Users/MSI/Documents/GitHub/Desktop-Application/GestionBadges/src/interfaceFX/mainWindow.java</file>
+            <file>file:/C:/Users/MSI/Documents/GitHub/Desktop-Application/GestionBadges/src/services/offreService.java</file>
+            <file>file:/C:/Users/MSI/Documents/GitHub/Desktop-Application/GestionBadges/src/entities/Offre.java</file>
+            <file>file:/C:/Users/MSI/Documents/GitHub/Desktop-Application/GestionBadges/src/gestionbadges/GestionBadges.java</file>
         </group>
     </open-files>
 </project-private>
