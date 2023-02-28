@@ -38,6 +38,8 @@ public class AjouterReservationController extends Application implements Initial
 
     @FXML
     TextField clienttxt;
+    @FXML
+    TextField vehiculetxt;
 
     @FXML
     DatePicker datePicker;
@@ -54,9 +56,9 @@ public class AjouterReservationController extends Application implements Initial
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        ReservationService reservationService = new ReservationService();
-        List<String> a = reservationService.getMatricule();
-        comboVehic.getItems().addAll(a);
+//        ReservationService reservationService = new ReservationService();
+//        List<String> a = reservationService.getMatricule();
+//        comboVehic.getItems().addAll(a);
     }
 
     @FXML
@@ -66,8 +68,9 @@ public class AjouterReservationController extends Application implements Initial
 
             if (isValid()) {  // Récupération des valeurs des champs
                 int clientId = Integer.parseInt(clienttxt.getText());
-                String matricule = comboVehic.getValue();
-                int vehiculeId = reservationService.getVehiculeIdByMatricule(matricule);
+                int vehiculeId = Integer.parseInt(vehiculetxt.getText());
+//                String matricule = comboVehic.getValue();
+//                int vehiculeId = reservationService.getVehiculeIdByMatricule(matricule);
                 LocalDate localDate = datePicker.getValue();
                 Date datefin = Date.valueOf(localDate);
                 Calendar cal = Calendar.getInstance();
@@ -134,10 +137,10 @@ Reservation reservation = new Reservation(date, datefin, vehiculeId, clientId, i
             JOptionPane.showMessageDialog(null, "Champ Vide!");
             return false;
         }
-//        if (vehiculetxt.getText().length() < 1) {
-//            JOptionPane.showMessageDialog(null, "Champ Vide!");
-//            return false;
-//        }
+        if (vehiculetxt.getText().length() < 1) {
+            JOptionPane.showMessageDialog(null, "Champ Vide!");
+            return false;
+        }
         if (itinerairetxt.getText().length() < 1) {
             JOptionPane.showMessageDialog(null, "Champ Vide!");
             return false;
@@ -153,6 +156,7 @@ Reservation reservation = new Reservation(date, datefin, vehiculeId, clientId, i
     public void setReservation(Reservation res) {
         reservation = res;
         clienttxt.setText(Integer.toString(res.getIduser()));
+        vehiculetxt.setText(Integer.toString(res.getIdvehicule()));
         itinerairetxt.setText(Integer.toString(res.getIditineraire()));
         datePicker.setValue(res.getDatedebut().toLocalDate());
 

@@ -1,6 +1,7 @@
 package gui;
 
 import entities.Historique;
+import java.io.IOException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -15,8 +16,14 @@ import services.HistoriqueService;
 import java.net.URL;
 import java.util.Date;
 import java.util.ResourceBundle;
+import javafx.application.Application;
+import static javafx.application.Application.launch;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
-public class HistoriqueAgentController implements Initializable {
+public class HistoriqueAgentController extends Application implements Initializable {
 
     @FXML
     private Button btndelete;
@@ -64,5 +71,25 @@ public class HistoriqueAgentController implements Initializable {
         numrescolumn.setCellValueFactory(new PropertyValueFactory<>("idreservation"));
         tab.setItems(list);
 
+    }
+       @Override
+    public void start(Stage primaryStage) {
+        try {
+            Parent root = FXMLLoader.
+                    load(getClass().getResource("HistoriqueAgent.fxml"));
+            Scene scene = new Scene(root);
+            primaryStage.setTitle("Gestion des Reservation!");
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        launch(args);
     }
 }

@@ -84,7 +84,7 @@ public class ReserverController extends Application implements Initializable {
         DateRes.setCellValueFactory(new PropertyValueFactory<>("datedebut"));
         DateFin.setCellValueFactory(new PropertyValueFactory<>("datefin"));
         TableRes.setItems(reservationService.afficherReservations23());
-        System.out.println(reservationService.afficherReservations23());
+   //     System.out.println(reservationService.afficherReservations23());
     }
 
     public void btnAjouterRes(ActionEvent event) throws IOException {
