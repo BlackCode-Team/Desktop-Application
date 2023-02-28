@@ -1,0 +1,21 @@
+.reclamation-layout{
+    -fx-background-color : #041231;
+    -fx background-radius: 0 0 50 50;
+}
+
+.button{
+    -fx-background-color: #BDE038;
+    -fx-background-radius:50;
+}
+.white-background{
+    -fx-background-color:fff;
+}
+.blue-background{
+    -fx-backgroud-color: #041231;
+}
+.transparent{
+    -fx-background-color: rgba(0,0,0,0);
+}
+.light-gray-background{
+    -fx-background-color: #F3F3F3;
+}

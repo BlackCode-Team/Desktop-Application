@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="453.0" prefWidth="760.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.CRUDVehiculeController">
+   <children>
+      <HBox alignment="CENTER_LEFT" prefHeight="59.0" prefWidth="760.0" style="-fx-background-color: #041231;" styleClass="white-background" stylesheets="@../styles/styles.css">
+         <children>
+            <ImageView fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" styleClass="vehicule-layout">
+               <image>
+                  <Image url="@../images/logo.png" />
+               </image>
+               <HBox.margin>
+                  <Insets bottom="3.0" left="20.0" top="3.0" />
+               </HBox.margin>
+            </ImageView>
+            <Label prefHeight="18.0" prefWidth="126.0" text="CarNgo" textFill="#f2f0f0">
+               <font>
+                  <Font name="Corbel Bold" size="18.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </Label>
+            <Pane prefHeight="59.0" prefWidth="224.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <Button fx:id="btndelete" layoutX="148.0" layoutY="10.0" mnemonicParsing="false" onAction="#delete" prefHeight="39.0" prefWidth="111.0" stylesheets="@../styles/styles.css" text="supprimer">
+                     <font>
+                        <Font name="Corbel Bold" size="13.0" />
+                     </font>
+                  </Button>
+               </children>
+            </Pane>
+            <Button fx:id="btnmod" mnemonicParsing="false" onAction="#update" prefHeight="39.0" prefWidth="121.0" stylesheets="@../styles/styles.css" text="modifier véhicule">
+               <font>
+                  <Font name="Corbel Bold" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnadd" mnemonicParsing="false" onAction="#add" prefHeight="39.0" prefWidth="120.0" stylesheets="@../styles/styles.css" text="Ajouter véhicule">
+               <font>
+                  <Font name="Corbel Bold" size="13.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="37.0" styleClass="transparent" stylesheets="@../styles/styles.css">
+               <graphic>
+                  <ImageView fx:id="btnsearch" fitHeight="27.0" fitWidth="31.0" onDragDetected="#search" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/sea.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+      <TableView fx:id="tab" layoutX="38.0" layoutY="97.0" prefHeight="301.0" prefWidth="690.0">
+        <columns>
+          <TableColumn fx:id="matriculecolumn" prefWidth="160.0" text="Matricule" />
+            <TableColumn fx:id="typecolumn" prefWidth="67.0" text="Type" />
+            <TableColumn fx:id="statuscolumn" prefWidth="93.0" text="status" />
+          <TableColumn fx:id="modelecolumn" prefWidth="153.0" text="Modele" />
+            <TableColumn fx:id="puissancecolumn" prefWidth="72.0" text="Puissance" />
+            <TableColumn fx:id="batteriecolumn" prefWidth="96.0" text="Niveau Batterie" />
+            <TableColumn fx:id="prixcolumn" minWidth="5.0" prefWidth="48.0" text="Prix/h" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>
