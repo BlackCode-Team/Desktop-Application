@@ -3,6 +3,7 @@ package gui;
 import entities.Reclamation;
 import entities.TypeVehicule;
 import entities.Vehicule;
+import entities.itineraire;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -16,6 +17,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import services.ItineraireService;
 import services.ReclamationService;
 import utils.MyConnection;
 
@@ -55,13 +57,15 @@ public class ReclamationController implements Initializable {
     @FXML
     private TableColumn<Reclamation, String> reclamationcolumn;
     @FXML
+    private TableColumn<Reclamation, Integer> idreclamation;
+    @FXML
     private TableColumn<Reclamation, String> statuscolumn;
     @FXML
     private TableView<Reclamation> tab;
 
-    //public ObservableList <Reclamation> data =FXCollections.observableArrayList();
-    List <Reclamation> l= new ArrayList<Reclamation>();
-    ObservableList <Reclamation> ls;
+
+    List<Reclamation> listReclamations = new ArrayList<>();
+    ObservableList<Reclamation> observableListReclamations;
     @FXML
     void tableevent(MouseEvent event) { }
     ReclamationService rs=new ReclamationService();
@@ -81,12 +85,14 @@ public class ReclamationController implements Initializable {
         }else {
             Reclamation r=new Reclamation(contenu,local_date(),matricule);
             rs.ajouterentite(r);
-            Alert al2=new Alert(Alert.AlertType.CONFIRMATION);
-            al2.setTitle("succes");
-            al2.setHeaderText(" Réclamation envoyée et nous vous répondrons dans les plus brefs délai!");
-            al2.showAndWait();
-            ls.addAll(rs.afficherentite());
-            tab.setItems(ls);
+//            Alert al2=new Alert(Alert.AlertType.CONFIRMATION);
+//            al2.setTitle("succes");
+//            al2.setHeaderText(" Réclamation envoyée et nous vous répondrons dans les plus brefs délai!");
+// al2.showAndWait();
+            JOptionPane.showMessageDialog(null, " Réclamation envoyée et nous vous répondrons dans les plus brefs délai!");
+            observableListReclamations.clear();
+            observableListReclamations.addAll(rs.afficherentite());
+            tab.setItems(observableListReclamations);
             txtcontenu.clear();
             chboxvehicule.getSelectionModel().clearSelection();
         }
@@ -108,6 +114,8 @@ public class ReclamationController implements Initializable {
     public void consulter() {
         List<Reclamation> listReclamations = rs.afficherentite();
         ObservableList<Reclamation> observableListReclamations = FXCollections.observableArrayList(listReclamations);
+        idreclamation = new TableColumn<>("ID");
+        idreclamation.setCellValueFactory(new PropertyValueFactory<>("idreclamation"));
         matriculecolumn.setCellValueFactory(new PropertyValueFactory<>("matricule"));
         reclamationcolumn.setCellValueFactory(new PropertyValueFactory<>("contenu"));
         datecolumn.setCellValueFactory(new PropertyValueFactory<>("date"));
@@ -117,21 +125,22 @@ public class ReclamationController implements Initializable {
 
 
     public void delete() {
-        rs.supprimerentite(tab.getSelectionModel().getSelectedItem());
+        Reclamation r=new Reclamation();
+        r=tab.getSelectionModel().getSelectedItem();
+        int idreclamation = r.getId();
+        rs.supprimerentite(idreclamation);
     }
 
     @FXML
     private void deleterec(ActionEvent event) {
-        delete();
-        tab.getItems().removeAll(tab.getSelectionModel().getSelectedItem());
-        System.out.println(tab);
-        tab.refresh();
+        Reclamation r = tab.getSelectionModel().getSelectedItem();
+        int id = r.getId();
+        rs.supprimerentite(id);
+        tab.getItems().removeAll(r);
     }
 
-    @FXML
-    void refresh(ActionEvent event) {
 
-    }
+
 
     public List<String> recupererMatricule(int iduser) {
         try {
@@ -151,14 +160,14 @@ public class ReclamationController implements Initializable {
             return null;
         }
     }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         List<String> matricules = recupererMatricule(16);
         ObservableList<String> options = FXCollections.observableArrayList(matricules);
         //chboxvehicule.getItems().setAll(options);
-        chboxvehicule.getItems().setAll("7896TUN231","7896TUN232");
-        ls = FXCollections.observableArrayList(); // initialize ls here
-
+        chboxvehicule.getItems().setAll("7896TUN231","9763TUN231");
+        observableListReclamations = FXCollections.observableArrayList(); // initialize ls here
         btnenvoyer.setOnAction(event -> {
             try {
                 envoyer(event);
@@ -171,5 +180,6 @@ public class ReclamationController implements Initializable {
     }
 
 
-
+    public void refresh(ActionEvent actionEvent) {
+    }
 }

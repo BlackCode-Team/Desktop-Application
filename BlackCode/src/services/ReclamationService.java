@@ -57,11 +57,12 @@ public class ReclamationService implements Iservice <Reclamation>{
             return false;
         }
     }
-    public boolean supprimerentite(Reclamation r) {
+    public boolean supprimerentite(int id) {
+
         String req = "DELETE FROM reclamation r WHERE idreclamation=?";
         try {
             PreparedStatement ps = myconnex.prepareStatement(req);
-            ps.setInt(1, r.getId());
+            ps.setInt(1, id);
             ps.executeUpdate();
             return true;
         } catch (SQLException e) {
@@ -77,14 +78,14 @@ public class ReclamationService implements Iservice <Reclamation>{
                 "FROM reclamation r " +
                 "JOIN utilisateur u ON r.iduser = u.iduser " +
                 "JOIN vehicule v ON r.idvehicule = v.idvehicule";*/
-        String req = "SELECT r.contenu, r.date, v.matricule " +
+        String req = "SELECT r.idreclamation,r.contenu, r.date, v.matricule " +
                 "FROM reclamation r " +
                 "JOIN vehicule v ON r.idvehicule = v.idvehicule";
         try {
             Statement ste = myconnex.createStatement();
             ResultSet rset = ste.executeQuery(req);
             while (rset.next()) {
-                Reclamation r = new Reclamation(rset.getString("contenu"), rset.getDate("date"));
+                Reclamation r = new Reclamation(rset.getInt("idreclamation"),rset.getString("contenu"), rset.getDate("date"));
                 Vehicule v=new Vehicule();
                 //Utilisateur u=new Utilisateur();
                 //u.setCin(rset.getInt("cin"));

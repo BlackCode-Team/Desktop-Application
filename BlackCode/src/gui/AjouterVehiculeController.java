@@ -61,6 +61,8 @@ public class AjouterVehiculeController implements Initializable {
             label.setText(imagePath);
             imgvw.setImage(image);
             //imageField.setText(selectedFile.getAbsolutePath());
+            //VehiculeServices vs=new VehiculeServices();
+            //String dbImagePath = vs.loadImage(selectedFile.getAbsolutePath(), imgvw);
         }
     }
 
@@ -82,12 +84,12 @@ public class AjouterVehiculeController implements Initializable {
         }else if (!txtmodele.getText().matches("[a-zA-Z0-9]+")){
             Alert al = new Alert(Alert.AlertType.ERROR);
             al.setTitle("erreur de saisie de modele");
-            al.setHeaderText("Veuillez entrer le champs correspondant ");
+            al.setHeaderText("Le champs modele n'accepte que les caracteres a-zA-Z0-9 ");
             al.showAndWait();
         }else if (!txtpuissance.getText().matches("[0-9]+")|| (!txtbatterie.getText().matches("[0-9]+"))){
             Alert al = new Alert(Alert.AlertType.ERROR);
             al.setTitle("champs vide");
-            al.setHeaderText("champs vide! Veuillez entrer les champs manquants ");
+            al.setHeaderText("Puissance et batterie ne contient que des chiffres!");
             al.showAndWait();
         }else if (choiceboxtype.getValue() == null) {
             Alert alert2 = new Alert(Alert.AlertType.ERROR);
@@ -96,6 +98,7 @@ public class AjouterVehiculeController implements Initializable {
             alert2.showAndWait();
         }else {
             vs.addEntity(v);
+            String imagePath = label.getText();
             Alert al2=new Alert(Alert.AlertType.CONFIRMATION);
             al2.setTitle("succes");
             al2.setHeaderText("vehicule ajouté !");

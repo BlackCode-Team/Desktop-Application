@@ -58,7 +58,7 @@ public class HistoriqueClientController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        ObservableList<Historique> list = FXCollections.observableArrayList(hs.afficherentite());
+        ObservableList<Historique> list = FXCollections.observableArrayList(hs.afficherHistorique());
         matriculecolumn.setCellValueFactory(new PropertyValueFactory<>("matricule"));
         destinationcolumn.setCellValueFactory(new PropertyValueFactory<>("pointarrivee"));
         datecolumn.setCellValueFactory(new PropertyValueFactory<>("datedebut"));

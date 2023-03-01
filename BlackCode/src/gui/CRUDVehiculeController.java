@@ -2,6 +2,7 @@ package gui;
 
 import entities.TypeVehicule;
 import entities.Vehicule;
+import entities.Voiture;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.*;
@@ -17,6 +18,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import services.ItineraireService;
 import services.VehiculeServices;
 
 import java.io.IOException;
@@ -107,11 +109,13 @@ public class CRUDVehiculeController implements Initializable {
         }
     }
 
-    @FXML
-    void delete()  {
-        vs.deleteEntity(tab.getSelectionModel().getSelectedItem());
-        System.out.println(tab.getSelectionModel().getSelectedItem().getId());
+
+    public void delete() {
+        Vehicule v=new Vehicule();
+        v=tab.getSelectionModel().getSelectedItem();
+         vs.deleteEntity(v);
     }
+
     @FXML
     private void deletev(ActionEvent event) {
         delete();
@@ -124,6 +128,8 @@ public class CRUDVehiculeController implements Initializable {
     void search(MouseEvent event) {
 
     }
+
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

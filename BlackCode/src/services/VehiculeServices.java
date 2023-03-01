@@ -1,9 +1,16 @@
 package services;
 
-import entities.TypeVehicule;
-import entities.Vehicule;
-import entities.Voiture;
+import entities.*;
+import javafx.scene.image.ImageView;
 import utils.MyConnection;
+import java.io.File;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -15,16 +22,9 @@ public class VehiculeServices implements IServices<Vehicule> {
     @Override
     public boolean addEntity(Vehicule v) {
         try {
-            String req1;
-            if(v.getType()==TypeVehicule.voiture){
-                 req1="INSERT INTO vehicule (type, modele, batterie, matricule, puissance, prix)  "+
+            String req1="INSERT INTO vehicule (type, modele, batterie, matricule, puissance, prix)  "+
                     " VALUES ( '"+v.getType()+"','"+v.getModele()+"','"+v.getBatterie()+"','"
-                                +v.getMatricule()+"','"+v.getPuissance()+"','"+v.getPrix()+"');";}
-            else{
-                 req1="INSERT INTO `vehicule`(`type`, `modele`, `batterie`,matricule `maxspeed`,prix) "+
-                        " VALUES ( '"+v.getType()+"','"+v.getModele()+"','"+v.getBatterie()+"','"+v.getMatricule()+"','"
-                                    +v.getMaxspeed()+v.getPrix()+"');";
-            }
+                                +v.getMatricule()+"','"+v.getPuissance()+"','"+v.getPrix()+"');";
             Statement ste= myconnex.createStatement();
             ste.executeUpdate(req1);
             System.out.println("Vehicule ajouté");
@@ -33,6 +33,32 @@ public class VehiculeServices implements IServices<Vehicule> {
             System.out.println(e.getMessage());
             return false;
         }
+    }
+
+    public  String loadImage(String imagePath, ImageView imageView) {
+        String imageFileName = new File(imagePath).getName();
+        String imageDirPath = new File(imagePath).getParent();
+        String dbImagePath = null;
+        try  {
+            // Insert the image path into the database
+            String sql = "INSERT INTO images (filename, filepath) VALUES (?, ?)";
+            PreparedStatement stmt = myconnex.prepareStatement(sql);
+            stmt.setString(1, imageFileName);
+            stmt.setString(2, imageDirPath);
+            stmt.executeUpdate();
+            // Retrieve the auto-generated primary key value for the image record
+            ResultSet rs = stmt.getGeneratedKeys();
+            if (rs.next()) {
+                int imageId = rs.getInt(1);
+                dbImagePath = String.format("/images/%d/%s", imageId, imageFileName);
+                // Load the image into the ImageView
+                Image image = new Image(new File(imagePath).toURI().toString());
+                imageView.setImage(image);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return dbImagePath;
     }
 
     @Override
@@ -107,6 +133,7 @@ public class VehiculeServices implements IServices<Vehicule> {
             return false;
         }
     }
+
 
     @Override
     public List<Vehicule> findAllEntity() {
