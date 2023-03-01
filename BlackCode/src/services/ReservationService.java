@@ -131,144 +131,176 @@ public class ReservationService implements IReservationService {
         }
         return list;
     }
-
     public ObservableList<Reservation> afficherReservations23() {
-        ObservableList<Reservation> list = FXCollections.observableArrayList();
-        try {
-            String req = "select * from reservation ";
-            PreparedStatement ps = myConnex.prepareStatement(req);
-            ResultSet resu = ps.executeQuery();
-            while (resu.next()) {
-                Reservation res = new Reservation();
-                res.setIdreservation(resu.getInt("idreservation"));
-                res.setDatedebut(resu.getDate("datedebut"));
-                res.setDatefin(resu.getDate("datefin"));
-                res.setStatus(EtatReservation.valueOf(resu.getString("status")));
-                res.setIdvehicule(resu.getInt("idvehicule"));
-                res.setIduser(resu.getInt("iduser"));
-                res.setIditineraire(resu.getInt("iditineraire"));
-                
-
-//                String req2 = "SELECT * FROM reservation WHERE iduser = ?";
-//                PreparedStatement ps2 = myConnex.prepareStatement(req2);
-//                ps2.setInt(1, res.getIduser());
-//                ResultSet resu2 = ps2.executeQuery();
-//                if (resu2.next()) {
-//                    int iduser = resu2.getInt("iduser");
-//                    Utilisateur user = new Utilisateur();
-//                    String cin = user.getCinById(iduser);
-//                    res.getUtilisateur().setCin(cin);
-//                }
-                String req2 = "SELECT u.cin FROM utilisateur u JOIN reservation r ON u.iduser = r.iduser ";
-                PreparedStatement ps2 = myConnex.prepareStatement(req2);
-                ResultSet resu2 = ps2.executeQuery();
-                while (resu2.next()) {
-                    String cin = resu2.getString("cin");
-                    res.setCin(cin);
-                }
-
-                String req3 = "SELECT u.matricule FROM vehicule u JOIN reservation r ON u.idvehicule = r.idvehicule ";
-                PreparedStatement ps3 = myConnex.prepareStatement(req3);
-                ResultSet resu3 = ps3.executeQuery();
-                if (resu3.next()) {
-                    String matricule = resu3.getString("matricule");
-                    res.setMatricule(matricule);
-                                    }
-
-                String req4 = "SELECT u.pointdepart FROM itineraire u JOIN reservation r ON u.iditineraire = r.iditineraire ";
-                PreparedStatement ps4 = myConnex.prepareStatement(req4);
-                ResultSet resu4 = ps4.executeQuery();
-                if (resu4.next()) {
-                    String pointDepart = resu4.getString("pointdepart");
-                    res.setPointdepart(pointDepart);
-                }
-                String req5 = "SELECT u.pointarrivee FROM itineraire u JOIN reservation r ON u.iditineraire = r.iditineraire ";
-                PreparedStatement ps5 = myConnex.prepareStatement(req5);
-                ResultSet resu5 = ps5.executeQuery();
-                if (resu5.next()) {
-                    String pointArrivee = resu5.getString("pointarrivee");
-                    res.setPointarrivee(pointArrivee);
-                }
-
-                list.add(res);
-            }
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
-        return list;
-    }
-
-    public String getMatriculeById(int id) {
-        String matricule = null;
-        try {
-            String req = "select matricule from vehicule where idvehicule=?";
-            PreparedStatement ps = myConnex.prepareStatement(req);
-
-            ps.setInt(1, id);
-            ResultSet resu = ps.executeQuery();
-            if (resu.next()) {
-                matricule = resu.getString("matricule");
-            }
-            System.out.println(matricule);
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
-        return matricule;
-    }
-   public int getVehiculeIdByMatricule(String matricule){
-        int id = 0;
-        try {
-            String req = "select idvehicule from vehicule where matricule=?";
-            PreparedStatement ps = myConnex.prepareStatement(req);
-
-            ps.setString(1, matricule);
-            ResultSet resu = ps.executeQuery();
-            if (resu.next()) {
-                id = resu.getInt("idvehicule");
-            }
-            System.out.println(id);
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
-        return id;
-    }
-
-    public String getStatusById(int id) {
-        String status = null;
-        try {
-            String req = "select status from reservation where idreservation=?";
-            PreparedStatement ps = myConnex.prepareStatement(req);
-
-            ps.setInt(1, id);
-            ResultSet resu = ps.executeQuery();
-            if (resu.next()) {
-                status = resu.getString("status");
-            }
-            System.out.println(status);
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
-        return status;
-    }
-
-    public List<String> getMatricule()  {
-        List<String> mat=new ArrayList<>();
+    ObservableList<Reservation> list = FXCollections.observableArrayList();
     try {
-        String req = "select matricule from vehicule ";
+        String req = "SELECT r.*, u.cin, v.matricule, i.pointdepart, i.pointarrivee " +
+                     "FROM reservation r " +
+                     "JOIN utilisateur u ON u.iduser = r.iduser " +
+                     "JOIN vehicule v ON v.idvehicule = r.idvehicule " +
+                     "JOIN itineraire i ON i.iditineraire = r.iditineraire";
+
         PreparedStatement ps = myConnex.prepareStatement(req);
         ResultSet resu = ps.executeQuery();
         while (resu.next()) {
-            mat.add(resu.getString("matricule"));
-            System.out.println(mat); 
-
-        }         
+            Reservation res = new Reservation();
+            res.setIdreservation(resu.getInt("idreservation"));
+            res.setDatedebut(resu.getDate("datedebut"));
+            res.setDatefin(resu.getDate("datefin"));
+            res.setStatus(EtatReservation.valueOf(resu.getString("status")));
+            res.setIdvehicule(resu.getInt("idvehicule"));
+            res.setIduser(resu.getInt("iduser"));
+            res.setIditineraire(resu.getInt("iditineraire"));
+            res.setCin(resu.getString("cin"));
+            res.setMatricule(resu.getString("matricule"));
+            res.setPointdepart(resu.getString("pointdepart"));
+            res.setPointarrivee(resu.getString("pointarrivee"));
+            list.add(res);
+        }
+    } catch (SQLException ex) {
+        System.out.println(ex.getMessage());
     }
-    catch(SQLException e ){
-                    System.out.println(e.getMessage());
+    return list;
+}
 
-        
-    }
-        return mat;
-
-    }
+//
+//    public ObservableList<Reservation> afficherReservations23() {
+//        ObservableList<Reservation> list = FXCollections.observableArrayList();
+//        try {
+//String req = "SELECT * FROM reservation r ";
+//
+//            PreparedStatement ps = myConnex.prepareStatement(req);
+//            ResultSet resu = ps.executeQuery();
+//            while (resu.next()) {
+//                Reservation res = new Reservation();
+//                res.setIdreservation(resu.getInt("idreservation"));
+//                res.setDatedebut(resu.getDate("datedebut"));
+//                res.setDatefin(resu.getDate("datefin"));
+//                res.setStatus(EtatReservation.valueOf(resu.getString("status")));
+//                res.setIdvehicule(resu.getInt("idvehicule"));
+//                res.setIduser(resu.getInt("iduser"));
+//                res.setIditineraire(resu.getInt("iditineraire"));
+//                list.add(res);}
+////                String req2 = "SELECT * FROM reservation WHERE iduser = ?";
+////                PreparedStatement ps2 = myConnex.prepareStatement(req2);
+////                ps2.setInt(1, res.getIduser());
+////                ResultSet resu2 = ps2.executeQuery();
+////                if (resu2.next()) {
+////                    int iduser = resu2.getInt("iduser");
+////                    Utilisateur user = new Utilisateur();
+////                    String cin = user.getCinById(iduser);
+////                    res.getUtilisateur().setCin(cin);
+////                }
+//                String req2 = "SELECT u.cin FROM utilisateur u JOIN reservation r ON u.iduser = r.iduser ";
+//                PreparedStatement ps2 = myConnex.prepareStatement(req2);
+//                ResultSet resu2 = ps2.executeQuery();
+//                while (resu2.next()) {
+//                    String cin = resu2.getString("cin");
+//                    res.setCin(cin);
+//                }
+//
+//                String req3 = "SELECT u.matricule FROM vehicule u JOIN reservation r ON u.idvehicule = r.idvehicule ";
+//                PreparedStatement ps3 = myConnex.prepareStatement(req3);
+//                ResultSet resu3 = ps3.executeQuery();
+//                if (resu3.next()) {
+//                    String matricule = resu3.getString("matricule");
+//                    res.setMatricule(matricule);
+//                                    }
+//
+//                String req4 = "SELECT u.pointdepart FROM itineraire u JOIN reservation r ON u.iditineraire = r.iditineraire ";
+//                PreparedStatement ps4 = myConnex.prepareStatement(req4);
+//                ResultSet resu4 = ps4.executeQuery();
+//                if (resu4.next()) {
+//                    String pointDepart = resu4.getString("pointdepart");
+//                    res.setPointdepart(pointDepart);
+//                }
+//                String req5 = "SELECT u.pointarrivee FROM itineraire u JOIN reservation r ON u.iditineraire = r.iditineraire ";
+//                PreparedStatement ps5 = myConnex.prepareStatement(req5);
+//                ResultSet resu5 = ps5.executeQuery();
+//                if (resu5.next()) {
+//                    String pointArrivee = resu5.getString("pointarrivee");
+//                    res.setPointarrivee(pointArrivee);
+//                }
+//
+//             
+//            }
+//        } catch (SQLException ex) {
+//            System.out.println(ex.getMessage());
+//        }
+//        return list;}
+////    }
+//
+//    public String getMatriculeById(int id) {
+//        String matricule = null;
+//        try {
+//            String req = "select matricule from vehicule where idvehicule=?";
+//            PreparedStatement ps = myConnex.prepareStatement(req);
+//
+//            ps.setInt(1, id);
+//            ResultSet resu = ps.executeQuery();
+//            if (resu.next()) {
+//                matricule = resu.getString("matricule");
+//            }
+//            System.out.println(matricule);
+//        } catch (SQLException ex) {
+//            System.out.println(ex.getMessage());
+//        }
+//        return matricule;
+//    }
+//   public int getVehiculeIdByMatricule(String matricule){
+//        int id = 0;
+//        try {
+//            String req = "select idvehicule from vehicule where matricule=?";
+//            PreparedStatement ps = myConnex.prepareStatement(req);
+//
+//            ps.setString(1, matricule);
+//            ResultSet resu = ps.executeQuery();
+//            if (resu.next()) {
+//                id = resu.getInt("idvehicule");
+//            }
+//            System.out.println(id);
+//        } catch (SQLException ex) {
+//            System.out.println(ex.getMessage());
+//        }
+//        return id;
+//    }
+//
+//    public String getStatusById(int id) {
+//        String status = null;
+//        try {
+//            String req = "select status from reservation where idreservation=?";
+//            PreparedStatement ps = myConnex.prepareStatement(req);
+//
+//            ps.setInt(1, id);
+//            ResultSet resu = ps.executeQuery();
+//            if (resu.next()) {
+//                status = resu.getString("status");
+//            }
+//            System.out.println(status);
+//        } catch (SQLException ex) {
+//            System.out.println(ex.getMessage());
+//        }
+//        return status;
+//    }
+//
+//    public List<String> getMatricule()  {
+//        List<String> mat=new ArrayList<>();
+//    try {
+//        String req = "select matricule from vehicule ";
+//        PreparedStatement ps = myConnex.prepareStatement(req);
+//        ResultSet resu = ps.executeQuery();
+//        while (resu.next()) {
+//            mat.add(resu.getString("matricule"));
+//            System.out.println(mat); 
+//
+//        }         
+//    }
+//    catch(SQLException e ){
+//                    System.out.println(e.getMessage());
+//
+//        
+//    }
+//        return mat;
+//
+//    }
 }
