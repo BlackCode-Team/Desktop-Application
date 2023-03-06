@@ -1,0 +1,26 @@
+.vehicule-layout{
+    -fx-background-color : #041231;
+    -fx background-radius: 0 0 50 50;
+}
+
+.button{
+    -fx-background-color: #BDE038;
+    -fx-background-radius:50;
+}
+.white-background{
+    -fx-background-color:fff;
+}
+
+.blue-background{
+    -fx-background-color: #a7bbc6;
+}
+.transparent{
+    -fx-background-color: rgba(0,0,0,0);
+}
+.light-gray-background{
+    -fx-background-color: #F3F3F3;
+}
+.search-box{
+    -fx-background-color:#FFFFFF;
+    -fx background-radius:100;
+}

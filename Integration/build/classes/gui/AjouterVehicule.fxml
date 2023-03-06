@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="434.0" prefWidth="635.0" styleClass="blue-background" stylesheets="@../styles/styles.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AjouterVehiculeController">
+    <children>
+      <HBox alignment="CENTER_LEFT" prefHeight="53.0" prefWidth="635.0" style="-fx-background-color: #041231;" styleClass="white-background" stylesheets="@../styles/styles.css">
+         <children>
+            <ImageView fitHeight="44.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true" styleClass="vehicule-layout">
+               <image>
+                  <Image url="@../images/logo.png" />
+               </image>
+               <HBox.margin>
+                  <Insets bottom="3.0" left="20.0" top="3.0" />
+               </HBox.margin>
+            </ImageView>
+            <Pane prefHeight="53.0" prefWidth="164.0" />
+            <Label prefHeight="22.0" prefWidth="189.0" text="Nouveau véhicule" textFill="#f2f0f0">
+               <font>
+                  <Font name="Corbel Bold" size="18.0" />
+               </font>
+            </Label>
+            <Button mnemonicParsing="false" prefHeight="35.0" prefWidth="37.0" styleClass="transparent" stylesheets="@../styles/styles.css">
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+      <Pane layoutX="42.0" layoutY="62.0" prefHeight="343.0" prefWidth="538.0">
+         <children>
+            <Label layoutX="18.0" layoutY="53.0" prefHeight="17.0" prefWidth="97.0" text="Type Véhicule">
+               <font>
+                  <Font name="Corbel Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="18.0" layoutY="95.0" prefHeight="17.0" prefWidth="97.0" text="Modele">
+               <font>
+                  <Font name="Corbel Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="294.0" layoutY="83.0" prefHeight="17.0" prefWidth="97.0" text="Matricule">
+               <font>
+                  <Font name="Corbel Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="295.0" layoutY="119.0" prefHeight="17.0" prefWidth="57.0" text="Puissance">
+               <font>
+                  <Font name="Corbel Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="296.0" layoutY="192.0" prefHeight="17.0" prefWidth="57.0" text="Batterie">
+               <font>
+                  <Font name="Corbel Bold" size="12.0" />
+               </font>
+            </Label>
+              <ChoiceBox fx:id="choiceboxtype" layoutX="97.0" layoutY="49.0" prefWidth="150.0" />
+                  <TextField fx:id="txtmodele" layoutX="98.0" layoutY="91.0" />
+                  <TextField fx:id="txtmatricule" layoutX="350.0" layoutY="79.0" />
+                   <TextField fx:id="txtpuissance" layoutX="353.0" layoutY="115.0" />
+                  <TextField fx:id="txtbatterie" layoutX="353.0" layoutY="188.0" />
+              <Button fx:id="btnAdd" layoutX="439.0" layoutY="271.0" mnemonicParsing="false" onAction="#add" prefHeight="25.0" prefWidth="71.0" style="-fx-background-color: #BDE038;" text="Ajouter">
+               <font>
+                  <Font name="Corbel Bold" size="13.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnBack" layoutX="353.0" layoutY="271.0" mnemonicParsing="false" onAction="#back" prefHeight="25.0" prefWidth="71.0" style="-fx-background-color: #BDE038;" text="Annuler">
+               <font>
+                  <Font name="Corbel Bold" size="13.0" />
+               </font>
+            </Button>
+            <Label layoutX="294.0" layoutY="156.0" prefHeight="17.0" prefWidth="57.0" text="Prix/h">
+               <font>
+                  <Font name="Corbel Bold" size="12.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtprix" layoutX="353.0" layoutY="152.0" />
+            <Button fx:id="btn" layoutX="129.0" layoutY="296.0" mnemonicParsing="false" onAction="#handleChooseImage" text="selectionner une image">
+               <effect>
+                  <InnerShadow>
+                     <color>
+                        <Color red="0.7954000234603882" green="0.9700000286102295" blue="0.6790000200271606" />
+                     </color>
+                  </InnerShadow>
+               </effect>
+            </Button>
+            <Label fx:id="label" layoutX="18.0" layoutY="132.0" prefHeight="17.0" prefWidth="150.0" text="Inserer l'image de vehicule">
+               <font>
+                  <Font name="Corbel Bold" size="12.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="imgvw" fitHeight="131.0" fitWidth="199.0" layoutX="58.0" layoutY="156.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </Pane>
+    </children>
+</AnchorPane>
