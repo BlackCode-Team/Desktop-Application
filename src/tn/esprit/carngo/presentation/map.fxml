@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -13,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="809.0" prefWidth="1209.0" style="-fx-background-color: #041231;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.carngo.presentation.MapController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="809.0" prefWidth="1209.0" style="-fx-background-color: #a7bbc6;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.carngo.presentation.MapController">
    <children>
       <AnchorPane fx:id="itinpage" layoutX="-5.0" layoutY="-5.0" prefHeight="818.0" prefWidth="1219.0">
          <children>
@@ -27,7 +28,9 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Label>
-            <TextField layoutX="809.0" layoutY="121.0" prefHeight="38.0" prefWidth="281.0" promptText="Chercher ....." style="-fx-background-color: #041231; -fx-border-color: #B7C3D7; -fx-border-radius: 2em;" />
+            <TextField fx:id="inrech" layoutX="809.0" layoutY="121.0" onKeyReleased="#rech" prefHeight="38.0" prefWidth="281.0" promptText="Chercher ....." style="-fx-background-color: #a7bbc6; -fx-border-color: #5697BF; -fx-border-radius: 2em;" />
+            <ComboBox fx:id="depcomb" layoutX="229.0" layoutY="209.0" prefWidth="150.0" />
+            <ComboBox fx:id="arivcomb" layoutX="229.0" layoutY="256.0" prefWidth="150.0" />
          </children></AnchorPane>
       <ImageView fitHeight="54.0" fitWidth="41.0" layoutX="1154.0" layoutY="741.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -40,20 +43,18 @@
           <TableColumn id="ariv" fx:id="arivcol" prefWidth="145.0" text="Placement d'arriver" />
             <TableColumn id="dis" fx:id="distancecol" minWidth="0.0" prefWidth="141.0" text="Distance(km)" />
             <TableColumn id="time" fx:id="estimcol" prefWidth="101.0" text="Temps estimé" />
-            <TableColumn id="id" fx:id="iduser" prefWidth="47.0" text="Id" />
-            <TableColumn fx:id="iditincol" prefWidth="56.0" text="id itin" />
+            <TableColumn id="id" fx:id="iduser" prefWidth="47.0" text="Id" visible="false" />
+            <TableColumn fx:id="iditincol" prefWidth="56.0" text="id itin" visible="false" />
         </columns>
       </TableView>
-      <TextField id="depart" fx:id="depart" layoutX="225.0" layoutY="201.0" />
-      <TextField id="arriver" fx:id="arriver" layoutX="225.0" layoutY="248.0" />
       <Label id="Placementdépart" layoutX="58.0" layoutY="205.0" prefHeight="21.0" prefWidth="149.0" text="Placement de départ" textFill="WHITE">
          <font>
             <Font name="System Bold" size="15.0" />
          </font></Label>
-      <Button id="map" fx:id="map" layoutX="221.0" layoutY="405.0" mnemonicParsing="false" onAction="#gmapwin" prefHeight="38.0" prefWidth="183.0" text="Selectioner depuis le map" />
-      <Button id="ajouter" fx:id="ajoutit" layoutX="225.0" layoutY="456.0" mnemonicParsing="false" onAction="#ajout_itineraire" prefHeight="38.0" prefWidth="117.0" style="-fx-background-color: #91d044;" text="AJOUTER" />
-      <Button id="supp" fx:id="suppit" layoutX="525.0" layoutY="635.0" mnemonicParsing="false" onAction="#supp_itineraire" prefHeight="38.0" prefWidth="152.0" style="-fx-background-color: #B80B0B;" text="Supprimer" textFill="#f5efef" />
-      <Button id="mod" fx:id="modit" layoutX="694.0" layoutY="635.0" mnemonicParsing="false" onAction="#mod_itineraire" prefHeight="38.0" prefWidth="152.0" style="-fx-background-color: #91d044;" text="Modifier" />
+      <Button id="map" fx:id="map" layoutX="221.0" layoutY="405.0" mnemonicParsing="false" onAction="#openmap" prefHeight="38.0" prefWidth="183.0" style="-fx-background-color: #5697BF;" styleClass="add-btn" stylesheets="@style.css" text="Pointer depuis le map" textFill="#fcfcfc" />
+      <Button id="ajouter" fx:id="ajoutit" layoutX="225.0" layoutY="456.0" mnemonicParsing="false" onAction="#ajout_itineraire" prefHeight="38.0" prefWidth="117.0" style="-fx-background-color: #5697BF;" styleClass="add-btn" stylesheets="@style.css" text="Selectionner " textFill="WHITE" />
+      <Button id="supp" fx:id="suppit" layoutX="525.0" layoutY="635.0" mnemonicParsing="false" onAction="#supp_itineraire" prefHeight="38.0" prefWidth="152.0" style="-fx-background-color: #5697BF;" styleClass="add-btn" stylesheets="@style.css" text="Annuler" textFill="#f5efef" />
+      <Button id="mod" fx:id="modit" layoutX="694.0" layoutY="635.0" mnemonicParsing="false" onAction="#mod_itineraire" prefHeight="38.0" prefWidth="152.0" style="-fx-background-color: #5697BF;" styleClass="add-btn" stylesheets="@style.css" text="Changer le placement" textFill="WHITE" />
       <TextField id="temps" fx:id="tempsest" layoutX="225.0" layoutY="297.0" />
       <Label layoutX="56.0" layoutY="301.0" prefHeight="21.0" prefWidth="166.0" text="Temps estime location " textFill="WHITE">
          <font>

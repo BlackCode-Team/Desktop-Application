@@ -7,6 +7,7 @@ package tn.esprit.carngo.presentation;
 
 
 
+import com.lynden.gmapsfx.GoogleMapView;
 import java.io.IOException;
 import tn.esprit.carngo.entities.itineraire;
 import java.net.URL;
@@ -18,6 +19,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -33,11 +35,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 import tn.esprit.carngo.service.ItineraireService;
@@ -51,6 +55,7 @@ import javafx.stage.Stage;
  *
  * @author mhcab
  */
+
 public class MapController implements Initializable {
   @FXML
     private AnchorPane itinpage;
@@ -78,11 +83,7 @@ public class MapController implements Initializable {
     private Label idlabel;
 
 
-    @FXML
-    private TextField depart;
 
-    @FXML
-    private TextField arriver;
 
     @FXML
     private Button ajoutit;
@@ -95,8 +96,18 @@ public class MapController implements Initializable {
 
     @FXML
     private TextField tempsest;
-        @FXML
+    @FXML
     private TextField iditin;
+    @FXML
+    private TextField inrech;
+        @FXML
+    private ComboBox<String> depcomb;
+
+    @FXML
+    private ComboBox<String> arivcomb;
+    
+    //les choix du combobox 
+    ObservableList<String> choices = FXCollections.observableArrayList( "Bizerte", "Ghazella", "Ariana");
 //************************************************* variable d'index pour le tableau
            int index=-1;
            
@@ -109,36 +120,36 @@ public class MapController implements Initializable {
      
      
      //**********************************controle de saisi
-        private boolean adressevalide(){
-      Pattern p = Pattern.compile("[a-zA-Z ]+");
-        Matcher m = p.matcher(arriver.getText());
-        if(m.find() && m.group().equals(arriver.getText())){
-            return true;
-        }else{
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Type validé !");
-                alert.setHeaderText(null);
-                alert.setContentText("Veuillez entrer un type DESTINATION validé !");
-                alert.showAndWait();
-           
-            return false;            
-        }
-     }
-                private boolean depvalide(){
-      Pattern p = Pattern.compile("[a-zA-Z ]+");
-        Matcher m = p.matcher(depart.getText());
-        if(m.find() && m.group().equals(depart.getText())){
-            return true;
-        }else{
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Type validé !");
-                alert.setHeaderText(null);
-                alert.setContentText("Veuillez entrer un type DEPART validé !");
-                alert.showAndWait();
-           
-            return false;            
-        }
-                }
+//        private boolean adressevalide(){
+//      Pattern p = Pattern.compile("[a-zA-Z ]+");
+//        Matcher m = p.matcher(arriver.getText());
+//        if(m.find() && m.group().equals(arriver.getText())){
+//            return true;
+//        }else{
+//                Alert alert = new Alert(Alert.AlertType.WARNING);
+//                alert.setTitle("Type validé !");
+//                alert.setHeaderText(null);
+//                alert.setContentText("Veuillez entrer un type DESTINATION validé !");
+//                alert.showAndWait();
+//           
+//            return false;            
+//        }
+//     }
+//                private boolean depvalide(){
+//      Pattern p = Pattern.compile("[a-zA-Z ]+");
+//        Matcher m = p.matcher(depart.getText());
+//        if(m.find() && m.group().equals(depart.getText())){
+//            return true;
+//        }else{
+//                Alert alert = new Alert(Alert.AlertType.WARNING);
+//                alert.setTitle("Type validé !");
+//                alert.setHeaderText(null);
+//                alert.setContentText("Veuillez entrer un type DEPART validé !");
+//                alert.showAndWait();
+//           
+//            return false;            
+//        }
+//                }
                                 private boolean estvalide(){
         Pattern p = Pattern.compile("[0-9]+");
         Matcher m = p.matcher(tempsest.getText());
@@ -175,30 +186,29 @@ public class MapController implements Initializable {
                             
                             
                             
-     
+     //*******************************ajouter itineraire ********************************
     @FXML
     void ajout_itineraire(ActionEvent event) {
         ItineraireService it = new ItineraireService();
-        if(adressevalide()&&depvalide()&&estvalide()&&idvalide()){
-        
-        String var1=arriver.getText();
-        String var2=depart.getText();
+        if(estvalide()&&idvalide()){
+
         String var3=tempsest.getText();
         int var4=Integer.parseInt(var3);
         String var5=iditin.getText();
         int var6=Integer.parseInt(var5);
+       String dep= depcomb.getValue();
+       String ariv= arivcomb.getValue();
         
 
        itineraire i =new itineraire();
         
-      i.setPointDepart(var2);
-      i.setPointDestination(var1);
+      i.setPointDepart(dep);
+      i.setPointDestination(ariv);
       i.setDureeEstime(var4);
       i.setIdUser(var6);
       it.ajouterItineraire(i);
        populateItineraires();
-      arriver.clear();
-      depart.clear();
+
       tempsest.clear();
       iditin.clear();;
 
@@ -206,25 +216,27 @@ public class MapController implements Initializable {
    } 
 
     }
-
+    
+//***************************modifier itineraire ****************************
     @FXML
     void mod_itineraire(ActionEvent event) {
        ItineraireService it = new ItineraireService();
-        if(adressevalide()&&depvalide()&&estvalide()&&idvalide()){
+        if(estvalide()&&idvalide()){
         
-        String var1=arriver.getText();
-        String var2=depart.getText();
+
         String var3=tempsest.getText();
         int var4=Integer.parseInt(var3);
         String var5=iditin.getText();
         int var6=Integer.parseInt(var5);
+       String dep= depcomb.getValue();
+       String ariv= arivcomb.getValue();
+        
         
 
-      itineraire i =new itineraire(var2,var1,var4);
+      itineraire i =new itineraire(ariv,dep,var4);
       it.modifierItineraire(var6, i);
        populateItineraires();
-      arriver.clear();
-      depart.clear();
+
       tempsest.clear();
       iditin.clear();;
 
@@ -232,6 +244,8 @@ public class MapController implements Initializable {
    }
     }
 
+    
+    //*******************************supprimer itineraire *********************************
     @FXML
     void supp_itineraire(ActionEvent event) {
            ItineraireService  it = new  ItineraireService ();
@@ -291,26 +305,86 @@ public class MapController implements Initializable {
     ItineraireService it=new ItineraireService();
     iditin.setText(iditincol.getCellData(index).toString());
     iditin.setDisable(true);
-    depart.setText(departcol.getCellData(index));
-    arriver.setText(arivcol.getCellData(index));
+    depcomb.setValue(departcol.getCellData(index));
+    arivcomb.setValue(arivcol.getCellData(index));
+
     tempsest.setText(estimcol.getCellData(index).toString());
     idlabel.setText("le nom du User : "+(it.NameUser(iduser.getCellData(index))));
 }
-      @FXML
-    void gmapwin(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("gmap.fxml"));
+ //***************************************FONCTION RECHERCHE DYNAMIQUE *********************************************
+     public void recherche() {
+    try {
+        Statement stmt = MyConnection.getInstance().getCnx().createStatement();
 
-        // Load the FXML file
-        Parent anotherRoot = loader.load();
+        ResultSet rs = stmt.executeQuery("SELECT iduser,iditineraire,pointdepart,pointarrivee,kilometrage,dureeestimee FROM itineraire");
+        
+        ObservableList<itineraire> itinerairesList = FXCollections.observableArrayList();
 
-        // cree une nouvelle scene ou nsetiw stage fiha ma3neha lpage fxml
-        Scene anotherScene = new Scene(anotherRoot);
-        Stage anotherStage = new Stage();
-        anotherStage.setScene(anotherScene);
+        while (rs.next()) {
+            int idUser = rs.getInt(1);
+            int idItineraire = rs.getInt(2);
+            String pointDepart = rs.getString(3);
+            String pointDestination = rs.getString(4);
+            int kilometrage = rs.getInt(5);
+            int DureeEstime = rs.getInt(6);
 
-        // pour afficher le stage
-        anotherStage.show();
+            itineraire i = new itineraire(idUser, idItineraire, pointDepart, pointDestination,kilometrage, DureeEstime);
+            itinerairesList.add(i);
+        }
+              String nom=inrech.getCharacters().toString();
+               ObservableList<itineraire> listrech =  itinerairesList.stream()
+                .filter(e -> e.getPointDepart().toLowerCase().startsWith(nom.toLowerCase()))
+                .collect(Collectors.toCollection(FXCollections::observableArrayList));
+ 
+        
+        iduser.setCellValueFactory(new PropertyValueFactory<>("idUser"));
+        iditincol.setCellValueFactory(new PropertyValueFactory<>("idItineraire"));
+        departcol.setCellValueFactory(new PropertyValueFactory<>("pointDepart"));
+        arivcol.setCellValueFactory(new PropertyValueFactory<>("pointDestination"));
+        distancecol.setCellValueFactory(new PropertyValueFactory<>("kilometrage"));
+        estimcol.setCellValueFactory(new PropertyValueFactory<>("DureeEstime"));
+
+        tableit.setItems(listrech);
+     
+    } catch (SQLException e) {
+        e.printStackTrace();
     }
+     }
+     //************************************ RECHERCHE DYNAMIQUE ********************
+    @FXML
+    void rech(KeyEvent event){
+        recherche();
+    }
+    
+ @FXML
+public void openmap(ActionEvent event) {
+    String url="";
+  
+    try {
+          if(depcomb.getValue().equalsIgnoreCase("Bizerte")&&arivcomb.getValue().equalsIgnoreCase("Ariana")||depcomb.getValue().equalsIgnoreCase("Ariana")&&arivcomb.getValue().equalsIgnoreCase("Bizerte"))
+    {
+       url="map/gmap3.fxml";
+    }
+    else if(depcomb.getValue().equalsIgnoreCase("Ariana")&&arivcomb.getValue().equalsIgnoreCase("Ghazella")||depcomb.getValue().equalsIgnoreCase("Ghazella")&&arivcomb.getValue().equalsIgnoreCase("Ariana")){
+     url="map/gmap.fxml";
+    }
+    else if(depcomb.getValue().equalsIgnoreCase("Ghazella")&&arivcomb.getValue().equalsIgnoreCase("Bizerte")||depcomb.getValue().equalsIgnoreCase("Bizerte")&&arivcomb.getValue().equalsIgnoreCase("Ghazella")){
+     url="map/gmap2.fxml";
+    }
+        // Load the FXML file of the new window
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(url));
+        Parent root = fxmlLoader.load();
+
+        // Create a new stage for the new window
+        Stage stage = new Stage();
+        stage.setTitle("Map");
+        stage.setScene(new Scene(root));
+        stage.show();
+    } catch (IOException e) {
+        e.printStackTrace();
+    }
+}
+   
     /**
      * Initializes the controller class.
      */
@@ -318,6 +392,8 @@ public class MapController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
    
        populateItineraires();
+       depcomb.setItems(choices);
+       arivcomb.setItems(choices);
        tableit.setOnMouseClicked(this::getit);
      
     }
