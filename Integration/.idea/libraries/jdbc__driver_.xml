@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="jdbc (driver)">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../../../../jdbc (driver)" />
+      <root url="jar://$PROJECT_DIR$/CarNgo/lib/javax.mail.jar!/" />
+      <root url="jar://$PROJECT_DIR$/CarNgo/lib/fontawesomefx-8.9.jar!/" />
+      <root url="jar://$PROJECT_DIR$/CarNgo/lib/fontawesomefx-glyphsbrowser-all-1.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/CarNgo/lib/fontbox-2.0.3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/CarNgo/lib/itextpdf-5.5.13.3.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+    <jarDirectory url="file://$PROJECT_DIR$/../../../../jdbc (driver)" recursive="false" />
+  </library>
+</component>

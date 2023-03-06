@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="657.0" prefWidth="854.0" styleClass="blue-background" stylesheets="@../values/styles.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AjouterVehiculeController">
+    <children>
+        <Circle fill="#99bac9" layoutX="415.0" layoutY="300.0" radius="205.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" />
+        <Circle fill="#a7bbc6" layoutX="412.0" layoutY="298.0" radius="162.0" strokeType="INSIDE" strokeWidth="0.0">
+            <stroke>
+                <LinearGradient cycleMethod="REPEAT" endX="1.0" endY="1.0">
+                    <stops>
+                        <Stop>
+                            <color>
+                                <Color red="0.9868420958518982" green="0.9731359481811523" blue="0.9731359481811523" />
+                            </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                            <color>
+                                <Color red="1.0" green="1.0" blue="1.0" />
+                            </color>
+                        </Stop>
+                    </stops>
+                </LinearGradient>
+            </stroke>
+        </Circle>
+        <Circle fill="#99bac9" layoutX="412.0" layoutY="296.0" radius="131.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" />
+        <Circle fill="#a7bbc6" layoutX="412.0" layoutY="296.0" radius="104.0" strokeType="INSIDE" strokeWidth="0.0">
+            <stroke>
+                <LinearGradient cycleMethod="REPEAT" endX="1.0" endY="1.0">
+                    <stops>
+                        <Stop>
+                            <color>
+                                <Color red="0.9868420958518982" green="0.9731359481811523" blue="0.9731359481811523" />
+                            </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                            <color>
+                                <Color red="1.0" green="1.0" blue="1.0" />
+                            </color>
+                        </Stop>
+                    </stops>
+                </LinearGradient>
+            </stroke>
+        </Circle>
+        <Circle fill="#99bac9" layoutX="412.0" layoutY="295.0" radius="76.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="0.0" />
+        <HBox alignment="CENTER_LEFT" layoutX="-1.0" prefHeight="72.0" prefWidth="885.0" style="-fx-background-color: #041231;" styleClass="white-background" stylesheets="@../values/styles.css">
+            <children>
+                <ImageView fitHeight="57.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true" styleClass="vehicule-layout">
+                    <image>
+                        <Image url="@../img/logo.png" />
+                    </image>
+                    <HBox.margin>
+                        <Insets bottom="3.0" left="30.0" top="3.0" />
+                    </HBox.margin>
+                </ImageView>
+                <Pane prefHeight="64.0" prefWidth="249.0" />
+                <Label prefHeight="44.0" prefWidth="294.0" text="Nouveau véhicule" textFill="#f2f0f0">
+                    <font>
+                        <Font name="Cambria" size="36.0" />
+                    </font>
+                </Label>
+            </children>
+        </HBox>
+        <ImageView fitHeight="590.0" fitWidth="891.0" layoutX="-1.0" layoutY="72.0" opacity="0.9" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../img/location-voiture.jpg" />
+            </image>
+        </ImageView>
+        <Pane layoutX="130.0" layoutY="122.0" prefHeight="458.0" prefWidth="615.0">
+            <children>
+                <Label layoutX="20.0" layoutY="58.0" prefHeight="22.0" prefWidth="122.0" text="Type Véhicule" textFill="WHITE">
+                    <font>
+                        <Font name="Corbel Bold" size="18.0" />
+                    </font>
+                </Label>
+                <Label layoutX="20.0" layoutY="107.0" prefHeight="17.0" prefWidth="97.0" text="Modele" textFill="WHITE">
+                    <font>
+                        <Font name="Corbel Bold" size="18.0" />
+                    </font>
+                </Label>
+                <Label layoutX="346.0" layoutY="58.0" prefHeight="17.0" prefWidth="97.0" text="Matricule" textFill="#f8f7f7">
+                    <font>
+                        <Font name="Corbel Bold" size="18.0" />
+                    </font>
+                </Label>
+                <Label layoutX="346.0" layoutY="96.0" prefHeight="22.0" prefWidth="90.0" text="Puissance" textFill="WHITE">
+                    <font>
+                        <Font name="Corbel Bold" size="18.0" />
+                    </font>
+                </Label>
+                <Label layoutX="346.0" layoutY="178.0" prefHeight="22.0" prefWidth="90.0" text="Batterie" textFill="WHITE">
+                    <font>
+                        <Font name="Corbel Bold" size="18.0" />
+                    </font>
+                </Label>
+                <ChoiceBox fx:id="choiceboxtype" layoutX="129.0" layoutY="56.0" prefHeight="31.0" prefWidth="165.0" />
+                <TextField fx:id="txtmatricule" layoutX="432.0" layoutY="57.0" prefHeight="29.0" prefWidth="165.0" promptText="XXXXTUNXXX" />
+                <TextField fx:id="txtpuissance" layoutX="432.0" layoutY="96.0" prefHeight="29.0" prefWidth="165.0" promptText="entrer la puissance" />
+                <TextField fx:id="txtprix" layoutX="432.0" layoutY="136.0" prefHeight="31.0" prefWidth="165.0" promptText="saisir le prix" />
+                <TextField fx:id="txtbatterie" editable="false" layoutX="432.0" layoutY="176.0" prefHeight="31.0" prefWidth="165.0" />
+                <Button fx:id="btnAdd" layoutX="492.0" layoutY="356.0" mnemonicParsing="false" onAction="#add" prefHeight="35.0" prefWidth="95.0" style="-fx-background-color: #5697BF;" text="Ajouter">
+                    <font>
+                        <Font name="Corbel Bold" size="13.0" />
+                    </font>
+                </Button>
+                <Button fx:id="btnBack" layoutX="392.0" layoutY="356.0" mnemonicParsing="false" onAction="#back" prefHeight="35.0" prefWidth="90.0" style="-fx-background-color: #5697BF;" text="Annuler">
+                    <font>
+                        <Font name="Corbel Bold" size="13.0" />
+                    </font>
+                </Button>
+                <Label layoutX="346.0" layoutY="140.0" prefHeight="17.0" prefWidth="57.0" text="Prix/h" textFill="WHITE">
+                    <font>
+                        <Font name="Corbel Bold" size="18.0" />
+                    </font>
+                </Label>
+                <Button fx:id="btn" layoutX="142.0" layoutY="375.0" mnemonicParsing="false" onAction="#handleChooseImage" prefHeight="33.0" styleClass="add-btn" stylesheets="@../values/style.css" text="selectionner une image">
+                    <effect>
+                        <InnerShadow>
+                            <color>
+                                <Color red="0.7954000234603882" green="0.9700000286102295" blue="0.6790000200271606" />
+                            </color>
+                        </InnerShadow>
+                    </effect>
+                </Button>
+                <ImageView fx:id="imgvw" fitHeight="185.0" fitWidth="268.0" layoutX="40.0" layoutY="151.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="label" layoutX="181.0" layoutY="336.0" prefHeight="17.0" prefWidth="128.0" />
+            <ChoiceBox fx:id="txtmodele" layoutX="129.0" layoutY="104.0" prefHeight="29.0" prefWidth="165.0" />
+            </children>
+        </Pane>
+    </children>
+</AnchorPane>

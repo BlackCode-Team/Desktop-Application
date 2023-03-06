@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="110.0" prefWidth="501.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.ClientItemController">
+    <children>
+        <VBox alignment="TOP_CENTER" layoutX="63.0" layoutY="8.0" prefHeight="215.0" prefWidth="225.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <children>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                      <HBox prefHeight="102.0" prefWidth="320.0">
+                          <children>
+                        <VBox prefHeight="108.0" prefWidth="312.0">
+                           <children>
+                              <HBox prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                          <Label fx:id="nameLabel" prefHeight="49.0" prefWidth="221.0" text="Mercedes eqc">
+                                              <font>
+                                                  <Font name="Cambria" size="24.0" />
+                                              </font>
+                                          </Label>
+                                    <Label fx:id="prixLabel" prefHeight="57.0" prefWidth="101.0" text="Prix">
+                                       <font>
+                                          <Font name="Cambria" size="18.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="100.0" prefWidth="200.0">
+                                 <children>
+                                    <Label prefHeight="34.0" prefWidth="111.0" text="Puissance">
+                                       <font>
+                                          <Font name="Cambria" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="puissanceLabel" prefHeight="34.0" prefWidth="111.0" text="Puissance">
+                                       <font>
+                                          <Font name="Cambria" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <HBox alignment="BOTTOM_RIGHT" prefHeight="54.0" prefWidth="91.0">
+                                       <children>
+                                          <Button fx:id="btnchoisir" mnemonicParsing="false" onAction="#choisir" prefHeight="25.0" prefWidth="60.0" style="-fx-background-color: #5697BF;" styleClass="add-btn" stylesheets="@../values/style.css" text="Choisir">
+                                             <HBox.margin>
+                                                <Insets bottom="5.0" right="7.0" />
+                                             </HBox.margin>
+                                          </Button>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                          </children>
+                      </HBox>
+                      <ImageView fx:id="img" fitHeight="124.0" fitWidth="190.0" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                              <Image url="@../img/mercedeseqc.jpeg" />
+                          </image>
+                      </ImageView>
+               </children>
+            </HBox>
+            </children>
+        </VBox>
+    </children>
+    <styleClass>
+        <String fx:value="fruit-item" />
+        <String fx:value="shadow" />
+    </styleClass>
+</AnchorPane>
