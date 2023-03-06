@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.VehiculesController">
+   <children>
+      <BorderPane layoutX="6.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <left>
+            <VBox prefHeight="200.0" prefWidth="335.0" styleClass="right-bar" stylesheets="@../values/style.css" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="65.0" prefWidth="200.0" stylesheets="@../values/style.css" VBox.vgrow="NEVER">
+                     <VBox.margin>
+                        <Insets left="30.0" right="30.0" top="10.0" />
+                     </VBox.margin>
+                     <children>
+                        <TextField fx:id="searchtxt" onKeyPressed="#searchButtonClicked" prefHeight="40.0" prefWidth="235.0" promptText="Type here to search" styleClass="transparent" stylesheets="@../values/style.css">
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="Cambria" size="18.0" />
+                           </font>
+                        </TextField>
+                        <Button fx:id="btnsearch" mnemonicParsing="false" onAction="#searchButtonClicked" prefHeight="40.0" prefWidth="100.0" styleClass="search-button" stylesheets="@../values/style.css" text="Search" textFill="WHITE" />
+                     </children>
+                     <styleClass>
+                        <String fx:value="search-box" />
+                        <String fx:value="shadow" />
+                     </styleClass>
+                  </HBox>
+                  <Pane prefHeight="57.0" prefWidth="435.0" VBox.vgrow="ALWAYS" />
+                  <VBox fx:id="chosenCarCard" alignment="CENTER" prefHeight="536.0" prefWidth="90.0" stylesheets="@../values/style.css">
+                     <VBox.margin>
+                        <Insets bottom="20.0" left="30.0" right="30.0" top="20.0" />
+                     </VBox.margin>
+                     <children>
+                        <HBox prefHeight="60.0" prefWidth="335.0">
+                           <children>
+                              <Label fx:id="modelLabel" prefHeight="48.0" prefWidth="276.0" text="Mercedes eqc" textFill="WHITE">
+                                 <font>
+                                    <Font name="Cambria" size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="batterielabel" prefHeight="30.0" prefWidth="229.0" text="disponible" textFill="WHITE">
+                                 <font>
+                                    <Font name="Cambria" size="24.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <VBox.margin>
+                              <Insets left="20.0" top="30.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <ImageView fx:id="carimg" fitHeight="170.0" fitWidth="285.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/mercedeseqc.jpeg" />
+                           </image>
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </ImageView>
+                        <HBox alignment="CENTER" prefHeight="53.0" prefWidth="335.0">
+                           <children>
+                              <Label prefHeight="30.0" prefWidth="134.0" text="Matricule" textFill="WHITE">
+                                 <font>
+                                    <Font name="Cambria" size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="matriculelabel" prefHeight="30.0" prefWidth="127.0" text="963TUN2934" textFill="WHITE">
+                                 <font>
+                                    <Font name="Cambria" size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="53.0" prefWidth="335.0">
+                           <children>
+                              <Label prefHeight="53.0" prefWidth="167.0" text="Puissance" textFill="WHITE">
+                                 <font>
+                                    <Font name="Cambria" size="24.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Label fx:id="puissancelabel" prefHeight="30.0" prefWidth="181.0" text="85" textFill="WHITE">
+                                 <font>
+                                    <Font name="Cambria" size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="69.0" prefWidth="275.0">
+                           <VBox.margin>
+                              <Insets bottom="20.0" />
+                           </VBox.margin>
+                           <children>
+                              <Label prefHeight="30.0" prefWidth="134.0" text="Prix" textFill="WHITE">
+                                 <font>
+                                    <Font name="Cambria" size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="prixlabel" prefHeight="30.0" prefWidth="127.0" text="25" textFill="WHITE">
+                                 <font>
+                                    <Font name="Cambria" size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Separator prefHeight="3.0" prefWidth="89.0">
+                                 <HBox.margin>
+                                    <Insets left="35.0" />
+                                 </HBox.margin>
+                              </Separator>
+                              <Separator prefHeight="0.0" prefWidth="116.0" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label prefHeight="30.0" prefWidth="147.0" text="Emplacement" textFill="WHITE">
+                                 <font>
+                                    <Font name="Cambria" size="24.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Label fx:id="locationlabel" prefHeight="30.0" prefWidth="122.0" text="Ariana " textFill="WHITE">
+                                 <font>
+                                    <Font name="Cambria" size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="5.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <Button fx:id="btnupdate" mnemonicParsing="false" onAction="#update" prefHeight="50.0" prefWidth="270.0" styleClass="add-btn" stylesheets="@../values/style.css" text="Modifier " textFill="#828282">
+                           <VBox.margin>
+                              <Insets bottom="20.0" top="20.0" />
+                           </VBox.margin>
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Button>
+                     </children>
+                     <styleClass>
+                        <String fx:value="chosen-car-card" />
+                        <String fx:value="shadow" />
+                     </styleClass>
+                  </VBox>
+                  <Pane prefHeight="57.0" prefWidth="435.0" VBox.vgrow="ALWAYS" />
+               </children>
+            </VBox>
+         </left>
+         <center>
+            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox prefHeight="86.0" prefWidth="625.0">
+                     <children>
+                        <Pane prefHeight="84.0" prefWidth="96.0" />
+                        <HBox fx:id="btncar" alignment="CENTER" onMouseClicked="#affichervoit" prefHeight="100.0" prefWidth="380.0" styleClass="chosen-car-card" stylesheets="@../values/style.css">
+                           <children>
+                              <VBox alignment="CENTER" prefHeight="86.0" prefWidth="203.0">
+                                 <children>
+                                    <Label prefHeight="29.0" prefWidth="190.0" text="Voiture" textFill="#878787">
+                                       <font>
+                                          <Font name="Cambria Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="nbvoitures" prefHeight="16.0" prefWidth="190.0" text="20 voitures" textFill="#878787">
+                                       <font>
+                                          <Font name="Cambria" size="15.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                              <ImageView fitHeight="68.0" fitWidth="78.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../img/car.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </HBox>
+                        <Pane prefHeight="84.0" prefWidth="96.0" HBox.hgrow="ALWAYS" />
+                        <HBox fx:id="btntrottinette" alignment="CENTER" onDragDetected="#affichertrot" onMouseClicked="#affichertrot" prefHeight="100.0" prefWidth="336.0" styleClass="trottinette-card" stylesheets="@../values/style.css">
+                           <children>
+                              <VBox alignment="CENTER" prefHeight="86.0" prefWidth="177.0">
+                                 <children>
+                                    <Label prefHeight="29.0" prefWidth="190.0" text="Trottinette" textFill="#878787">
+                                       <font>
+                                          <Font name="Cambria Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="nbtrottinettes" prefHeight="20.0" prefWidth="192.0" text="7 trottinettes" textFill="#878787">
+                                       <font>
+                                          <Font name="Cambria" size="15.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                              <ImageView fitHeight="63.0" fitWidth="91.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../img/scooter.png" />
+                                 </image>
+                              </ImageView>
+                           </children>
+                        </HBox>
+                        <Pane prefHeight="84.0" prefWidth="96.0" />
+                     </children>
+                     <VBox.margin>
+                        <Insets left="20.0" right="20.0" top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <ScrollPane fx:id="scroll" prefHeight="570.0" prefWidth="785.0" styleClass="transparent" stylesheets="@../values/style.css">
+                           <content>
+                              <GridPane fx:id="grid" prefHeight="0.0" prefWidth="0.0">
+                                 <rowConstraints>
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                                 </rowConstraints>
+                              </GridPane>
+                           </content>
+                           <HBox.margin>
+                              <Insets top="10.0" />
+                           </HBox.margin>
+                        </ScrollPane>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </center>
+         <top>
+            <HBox prefHeight="70.0" prefWidth="1000.0" style="-fx-background-color: #041231;" BorderPane.alignment="CENTER">
+               <children>
+                  <ImageView fitHeight="57.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true" styleClass="vehicule-layout">
+                     <image>
+                        <Image url="@../img/logo.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="15.0" top="10.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <HBox alignment="CENTER" prefHeight="70.0" prefWidth="299.0">
+                     <children>
+                        <Label prefHeight="49.0" prefWidth="128.0" text="CarNgo" textFill="#878787">
+                           <font>
+                              <Font name="Cambria Bold" size="36.0" />
+                           </font>
+                        </Label>
+                        <Label text="Vehicules" textFill="#878787">
+                           <font>
+                              <Font name="Cambria" size="36.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <Pane prefHeight="70.0" prefWidth="527.0" />
+                  <Button fx:id="btnadd" mnemonicParsing="false" onAction="#add" prefHeight="33.0" prefWidth="92.0" style="-fx-background-color: #5697BF;" styleClass="add-btn" stylesheets="@../values/styles.css" text="Ajouter">
+                     <HBox.margin>
+                        <Insets top="17.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+         </top>
+      </BorderPane>
+   </children>
+</AnchorPane>
